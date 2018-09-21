@@ -49,7 +49,6 @@ abstract class Personnage {
         this.degMag = degMag;
         this.distAttMax = distAttMax;
         this.pos = pos;
-        
     }
     
     public Personnage( Personnage p){
@@ -154,6 +153,12 @@ abstract class Personnage {
         this.pos = pos;
     }
     
+    public void deplace() {
+        // TODO : faire une fonction de déplacement
+    }
     
+    public void affiche() {
+        // TODO : faire une fonction d'affichage 
+    }
     
 }
