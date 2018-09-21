@@ -36,12 +36,12 @@ public class World {
 
         //on positionne le paysan peon
         while (!verifyP) {
-            peon.setPos(new Point2D((generateurAleatoire.nextInt(10) - 5 + robin.getPos().getX()), (generateurAleatoire.nextInt(10) - 5 + robin.getPos().getY())));
-            if (peon.getPos().getX() <= TAILLEMAX
+            peon.setPos(new Point2D((generateurAleatoire.nextInt(10) - 5 + robin.getPos().getX()), (generateurAleatoire.nextInt(10) - 5 + robin.getPos().getY())));// place le paysan a 5 moins de 5 de distance de robin
+            if (peon.getPos().getX() <= TAILLEMAX //vérifie que le paysan  est dans le monde et pas en dehors
                     && peon.getPos().getY() <= TAILLEMAX
                     && peon.getPos().getX() >= 0
                     && peon.getPos().getY() >= 0) {
-                if (peon.getPos().getX() == robin.getPos().getX()
+                if (peon.getPos().getX() == robin.getPos().getX() // vérifie les collisions avec robin
                         && peon.getPos().getY() == robin.getPos().getY()) {
                     verifyP = false;
                 } else {
@@ -53,8 +53,8 @@ public class World {
 
         //on positionne le lapin bugs
         while (!verifyL) {
-            bugs.setPos(new Point2D((generateurAleatoire.nextInt(10) - 5 + robin.getPos().getX()), (generateurAleatoire.nextInt(10) - 5 + robin.getPos().getY())));
-            if (bugs.getPos().getX() <= TAILLEMAX
+            bugs.setPos(new Point2D((generateurAleatoire.nextInt(10) - 5 + robin.getPos().getX()), (generateurAleatoire.nextInt(10) - 5 + robin.getPos().getY()))); // place le lapin à moins de 5 de distances de robin
+            if (bugs.getPos().getX() <= TAILLEMAX // vérifie que le lapin est dans le monde et pas en dehors
                     && bugs.getPos().getY() <= TAILLEMAX
                     && bugs.getPos().getX() >= 0
                     && bugs.getPos().getY() >= 0) {
@@ -66,7 +66,7 @@ public class World {
                         bugs.getPos().getY() == peon.getPos().getY())) {
                     verifyL = false;
                 } else {
-                    if (Math.abs(bugs.getPos().getX() - peon.getPos().getX()) < 5
+                    if (Math.abs(bugs.getPos().getX() - peon.getPos().getX()) < 5 //vérifie que la distance avec peon soit à moins de 5
                             && Math.abs(bugs.getPos().getY() - peon.getPos().getY()) < 5) {
                         verifyL = true;
                     }

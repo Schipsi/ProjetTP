@@ -164,20 +164,21 @@ abstract class Personnage {
 
     public void affiche() {
         System.out.println(
-                "Je suis un personnage, je possède "
-                + this.getPtVie()
-                + " points de vie et "
-                + this.getPtMana()
-                + " points de mana. Je suis actuellement en ["
-                + this.getPos().getX() + "," + this.getPos().getY()
-                + "] et je suis en mesure de t'infliger "
-                + this.getDegAtt()
-                + " dégats avec mes attaques et "
-                + this.getDegMag()
-                + " dégats avec ma magie (probabilité respective de toucher de "
-                + this.getPourcentageAtt()
-                + " et "
-                + this.getPourcentageMag()
+            "Je suis un personnage, je possède "
+            + this.getPtVie()
+            + " points de vie et "
+            + this.getPtMana()
+            + " points de mana. \nJe suis actuellement en ["
+            + this.getPos().getX() + "," + this.getPos().getY()
+            + "] et je suis en mesure de t'infliger "
+            + this.getDegAtt()
+            + " dégats avec mes attaques et "
+            + this.getDegMag()
+            + " dégats avec ma magie \n(probabilité respective de toucher de "
+            + this.getPourcentageAtt()
+            + " et "
+            + this.getPourcentageMag()
+            + ")"
         );
     }
 
