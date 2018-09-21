@@ -9,20 +9,20 @@ package org.centrale.projet.objet;
  *
  * @author grego
  */
-public class Monstre {
+abstract class Monstre {
     
     //définition des attributs de la classe
-    private int ptVie;
-    private int PourcentageAtt;
-    private int pourcentagePar;
-    private int degAtt;
-    private Point2D pos;
+    protected int ptVie;
+    protected int pourcentageAtt;
+    protected int pourcentagePar;
+    protected int degAtt;
+    protected Point2D pos;
     
     //définition des constructeurs
 
-    public Monstre(int ptVie, int PourcentageAtt, int pourcentagePar, int degAtt, Point2D pos) {
+    public Monstre(int ptVie, int pourcentageAtt, int pourcentagePar, int degAtt, Point2D pos) {
         this.ptVie = ptVie;
-        this.PourcentageAtt = PourcentageAtt;
+        this.pourcentageAtt = pourcentageAtt;
         this.pourcentagePar = pourcentagePar;
         this.degAtt = degAtt;
         this.pos = pos;
@@ -33,7 +33,7 @@ public class Monstre {
     
     public Monstre( Monstre m) {
         this.ptVie = m.ptVie;
-        this.PourcentageAtt = m.PourcentageAtt;
+        this.pourcentageAtt = m.pourcentageAtt;
         this.pourcentagePar = m.pourcentagePar;
         this.degAtt = m.degAtt;
         this.pos = m.pos;
@@ -51,11 +51,11 @@ public class Monstre {
     }
 
     public int getPourcentageAtt() {
-        return PourcentageAtt;
+        return pourcentageAtt;
     }
 
-    public void setPourcentageAtt(int PourcentageAtt) {
-        this.PourcentageAtt = PourcentageAtt;
+    public void setPourcentageAtt(int pourcentageAtt) {
+        this.pourcentageAtt = pourcentageAtt;
     }
 
     public int getPourcentagePar() {
