@@ -25,18 +25,29 @@ abstract class Personnage {
     private Point2D pos;
 
     //création des méthodes constructeurs
-    public Personnage(String nom, int ptVie, int ptMana, int pourcentageAtt, int pourcentagePar, int pourcentageMag, int pourcentageResistMag, int degAtt, int degMag, int distAttMax) {
-        this.nom= nom;
-        this.ptVie=ptVie;
-        this.ptMana= ptMana;
-        this.pourcentageAtt= pourcentageAtt;
-        this.pourcentagePar= pourcentagePar;
-        this.pourcentageMag= pourcentageMag;
-        this.pourcentageResistMag= pourcentageResistMag;
-        this.degAtt= degAtt;
-        this.degMag= degMag;
-        this.distAttMax= distAttMax;
-        this.pos= pos;
+    public Personnage(
+        String nom, 
+        int ptVie, 
+        int ptMana,
+        int pourcentageAtt, 
+        int pourcentagePar, 
+        int pourcentageMag, 
+        int pourcentageResistMag, 
+        int degAtt, 
+        int degMag, 
+        int distAttMax
+    ) {
+        this.nom = nom;
+        this.ptVie = ptVie;
+        this.ptMana = ptMana;
+        this.pourcentageAtt = pourcentageAtt;
+        this.pourcentagePar = pourcentagePar;
+        this.pourcentageMag = pourcentageMag;
+        this.pourcentageResistMag = pourcentageResistMag;
+        this.degAtt = degAtt;
+        this.degMag = degMag;
+        this.distAttMax = distAttMax;
+        this.pos = pos;
         
     }
     
@@ -102,12 +113,12 @@ abstract class Personnage {
         this.pourcentageMag = pourcentageMag;
     }
 
-    public int getPourcentageResistaMag() {
+    public int getPourcentageResistMag() {
         return pourcentageResistMag;
     }
 
-    public void setPourcentageResistaMag(int pourcentageResistaMag) {
-        this.pourcentageResistMag = pourcentageResistMag;
+    public void setPourcentageResistMag(int pourcentageResistaMag) {
+        this.pourcentageResistMag = pourcentageResistaMag;
     }
 
     public int getDegAtt() {
