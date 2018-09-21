@@ -25,8 +25,7 @@ abstract class Monstre {
         this.pourcentageAtt = pourcentageAtt;
         this.pourcentagePar = pourcentagePar;
         this.degAtt = degAtt;
-        this.pos.setX(pos.getX());
-        this.pos.setY(pos.getY());
+        this.pos = new Point2D(pos.getX(), pos.getY());
     }
 
     public Monstre() {
@@ -99,7 +98,7 @@ abstract class Monstre {
         System.out.println("Dégat d'attaque :"+this.degAtt);
         System.out.println("Pourcentage d'attaque :"+this.pourcentageAtt);
         System.out.println("pourcentage de Parade :"+this.pourcentagePar);
-        System.out.println("position : ("+this.getPos().getX()+","+this.getPos().getX()+")");
+        System.out.println("position : ("+this.getPos().getX()+","+this.getPos().getY()+")");
     }
     
     public void deplace(){

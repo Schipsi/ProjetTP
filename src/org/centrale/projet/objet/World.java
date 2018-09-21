@@ -14,15 +14,15 @@ import java.util.Random;
 public class World {
     
     //création des personnages du monde 
-    Archer robin = new Archer();
-    Paysan peon= new Paysan();
-    Lapin bugs = new Lapin();
+    Archer robin = new Archer("robin", 99, 98, 80, 0, 2, 6, 13, 4, 6, new Point2D(), 16);
+    Paysan peon= new Paysan("peon", 20, 16, 50, 10, 0, 0, 2, 1, 1, new Point2D());
+    Lapin bugs = new Lapin(6, 20, 10, 1, new Point2D());
     
     //définition de la taille max du monde 
     private final int TAILLEMAX= 100;
      
     public World () {
-        
+        creeMondeAlea();
     }
 
     public void creeMondeAlea() {
@@ -50,12 +50,12 @@ public class World {
                 }
             }
         }
-        
+        System.out.println("ok boucle 1");
         boolean verifyL =false;
         
         //on positionne le lapin bugs
         while(!verifyL){
-            bugs.setPos(new Point2D((generateurAleatoire.nextInt(10)-5),(generateurAleatoire.nextInt(10)-5)));
+            bugs.setPos(new Point2D((generateurAleatoire.nextInt(10)-5+robin.getPos().getX()),(generateurAleatoire.nextInt(10)-5+robin.getPos().getY())));
             if(bugs.getPos().getX()<=TAILLEMAX &&
                bugs.getPos().getY()<=TAILLEMAX &&
                bugs.getPos().getX()>=0 &&
@@ -64,15 +64,18 @@ public class World {
                    bugs.getPos().getY()==robin.getPos().getY()) ||
                    (bugs.getPos().getX()==peon.getPos().getX() && //vérifie les collisions avec peon
                    bugs.getPos().getY()==peon.getPos().getY())){
-                   verifyP=false;
+                   verifyL=false;
                 }
                 else{
                     if(Math.abs(bugs.getPos().getX()-peon.getPos().getX())<5 && 
                        Math.abs(bugs.getPos().getY()-peon.getPos().getY())<5 ){
-                       verifyP=true;
-                       }
+                       verifyL=true;
                     }
                 }
+            }
         }
+        robin.affiche();
+        peon.affiche();
+        bugs.affiche();
     }
 }

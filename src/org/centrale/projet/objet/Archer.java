@@ -81,7 +81,7 @@ public class Archer extends Personnage {
             + " points de vie et "
             + this.getPtMana()
             + " points de mana. Je suis actuellement en ["
-            + this.getPos()
+            + this.getPos().getX()+","+this.getPos().getY()
             + "] et je suis en mesure de t'infliger "
             + this.getDegAtt()
             + " dégats avec mes attaques et "
