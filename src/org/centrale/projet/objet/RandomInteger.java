@@ -16,6 +16,7 @@ public class RandomInteger {
       // 100 ici definit la borne sup de l'intervalle
       int entierAlea = generateurAleatoire.nextInt(100);
       System.out.println("On vient de generer : "+entierAlea);
+      System.out.println("On vient de generer : "+generateurAleatoire.nextInt(100));
     }
   }
 }
