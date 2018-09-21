@@ -14,6 +14,10 @@ public class World {
     //création des personnages du monde 
     Archer robin = new Archer();
     Paysan peon= new Paysan();
+    Lapin bugs = new Lapin();
+    
+    //définition de la taille max du monde 
+    private final int TAILLEMAX= 100;
      
     public World () {
         

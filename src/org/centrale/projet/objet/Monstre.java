@@ -25,7 +25,8 @@ abstract class Monstre {
         this.pourcentageAtt = pourcentageAtt;
         this.pourcentagePar = pourcentagePar;
         this.degAtt = degAtt;
-        this.pos = pos;
+        this.pos.setX(pos.getX());
+        this.pos.setY(pos.getY());
     }
 
     public Monstre() {
@@ -36,7 +37,8 @@ abstract class Monstre {
         this.pourcentageAtt = m.pourcentageAtt;
         this.pourcentagePar = m.pourcentagePar;
         this.degAtt = m.degAtt;
-        this.pos = m.pos;
+        this.pos.setX(m.pos.getX());
+        this.pos.setY(m.pos.getY());
     }
     
     

@@ -48,7 +48,8 @@ abstract class Personnage {
         this.degAtt = degAtt;
         this.degMag = degMag;
         this.distAttMax = distAttMax;
-        this.pos = pos;
+        this.pos.setX(pos.getX());
+        this.pos.setY(pos.getY());
     }
     
     public Personnage( Personnage p){
@@ -62,7 +63,8 @@ abstract class Personnage {
         this.degAtt= p.degAtt;
         this.degMag= p.degMag;
         this.distAttMax= p.distAttMax;
-        this.pos= p.pos;
+        this.pos.setX(p.pos.getX());
+        this.pos.setY(p.pos.getY());
     }
 
     public Personnage() {
