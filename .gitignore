@@ -1,0 +1,8 @@
+# gitignore file for projet
+# all files but src file will be ignored to avoid compilation problems
+
+build/
+lib/
+nbproject/
+build.xml
+manifest.mf
