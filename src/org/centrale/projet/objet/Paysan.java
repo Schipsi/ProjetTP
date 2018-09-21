@@ -9,13 +9,12 @@ package org.centrale.projet.objet;
  *
  * @author grego
  */
-public class Archer extends Personnage {
+public class Paysan extends Personnage {
 
     //définition des Attributs
-    private int nbFleches;
     
     //définition des constructeurs
-    public Archer(
+    public Paysan(
             String nom, 
             int ptVie, 
             int ptMana, 
@@ -26,8 +25,7 @@ public class Archer extends Personnage {
             int degAtt, 
             int degMag, 
             int distAttMax, 
-            Point2D pos, 
-            int nbf)
+            Point2D pos)
     {
         super(nom, 
               ptVie, 
@@ -40,34 +38,24 @@ public class Archer extends Personnage {
               degMag, 
               distAttMax, 
               pos);
-        this.nbFleches=nbf;
     }
     
-    public Archer( Archer a){
-        this.nom = a.nom;
-        this.ptVie = a.ptVie;
-        this.ptMana = a.ptMana;
-        this.pourcentageAtt = a.pourcentageAtt;
-        this.pourcentagePar = a.pourcentagePar;
-        this.pourcentageMag = a.pourcentageMag;
-        this.pourcentageResistMag = a.pourcentageResistMag;
-        this.degAtt = a.degAtt;
-        this.degMag = a.degMag;
-        this.distAttMax = a.distAttMax;
-        this.pos = a.pos;
-        this.nbFleches= a.nbFleches;
+    public Paysan( Paysan p){
+        this.nom = p.nom;
+        this.ptVie = p.ptVie;
+        this.ptMana = p.ptMana;
+        this.pourcentageAtt = p.pourcentageAtt;
+        this.pourcentagePar = p.pourcentagePar;
+        this.pourcentageMag = p.pourcentageMag;
+        this.pourcentageResistMag = p.pourcentageResistMag;
+        this.degAtt = p.degAtt;
+        this.degMag = p.degMag;
+        this.distAttMax = p.distAttMax;
+        this.pos = p.pos;
     }
 
-    public Archer() {
+    public Paysan() {
     }
-
     //définition des Accesseurs et Mutateurs
-    public int getNbFleches() {
-        return nbFleches;
-    }
 
-    public void setNbFleches(int nbFleches) {
-        this.nbFleches = nbFleches;
-    }
-    
 }
