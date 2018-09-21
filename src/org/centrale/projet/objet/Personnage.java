@@ -103,11 +103,11 @@ abstract class Personnage {
     }
 
     public int getPourcentageResistaMag() {
-        return pourcentageResistaMag;
+        return pourcentageResistMag;
     }
 
     public void setPourcentageResistaMag(int pourcentageResistaMag) {
-        this.pourcentageResistaMag = pourcentageResistaMag;
+        this.pourcentageResistMag = pourcentageResistMag;
     }
 
     public int getDegAtt() {
