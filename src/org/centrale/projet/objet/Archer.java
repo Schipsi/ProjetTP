@@ -16,30 +16,32 @@ public class Archer extends Personnage {
     
     //définition des constructeurs
     public Archer(
-            String nom, 
-            int ptVie, 
-            int ptMana, 
-            int pourcentageAtt, 
-            int pourcentagePar, 
-            int pourcentageMag, 
-            int pourcentageResistMag, 
-            int degAtt, 
-            int degMag, 
-            int distAttMax, 
-            Point2D pos, 
-            int nbf)
-    {
-        super(nom, 
-              ptVie, 
-              ptMana, 
-              pourcentageAtt, 
-              pourcentagePar, 
-              pourcentageMag, 
-              pourcentageResistMag, 
-              degAtt, 
-              degMag, 
-              distAttMax, 
-              pos);
+        String nom, 
+        int ptVie, 
+        int ptMana, 
+        int pourcentageAtt, 
+        int pourcentagePar, 
+        int pourcentageMag, 
+        int pourcentageResistMag, 
+        int degAtt, 
+        int degMag, 
+        int distAttMax, 
+        Point2D pos, 
+        int nbf
+    ) {
+        super(
+            nom, 
+            ptVie, 
+            ptMana, 
+            pourcentageAtt, 
+            pourcentagePar, 
+            pourcentageMag, 
+            pourcentageResistMag, 
+            degAtt, 
+            degMag, 
+            distAttMax, 
+            pos
+        );
         this.nbFleches=nbf;
     }
     
