@@ -35,7 +35,8 @@ abstract class Personnage {
         int pourcentageResistMag, 
         int degAtt, 
         int degMag, 
-        int distAttMax
+        int distAttMax,
+        Point2D pos
     ) {
         this.nom = nom;
         this.ptVie = ptVie;
