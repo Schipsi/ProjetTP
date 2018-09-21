@@ -18,15 +18,40 @@ abstract class Personnage {
     private int pourcentageAtt;
     private int pourcentagePar;
     private int pourcentageMag;
-    private int pourcentageResistaMag;
+    private int pourcentageResistMag;
     private int degAtt;
     private int degMag;
     private int distAttMax;
     private Point2D pos;
 
     //création des méthodes constructeurs
-    public Personnage(String nom, int ptVie, int ptMana, int pourcentageAtt, int pourcentagePar, int pourcentageMag, int pourcentageResistaMag, int degAtt, int degMag, int distAttMax) {
+    public Personnage(String nom, int ptVie, int ptMana, int pourcentageAtt, int pourcentagePar, int pourcentageMag, int pourcentageResistMag, int degAtt, int degMag, int distAttMax) {
         this.nom= nom;
+        this.ptVie=ptVie;
+        this.ptMana= ptMana;
+        this.pourcentageAtt= pourcentageAtt;
+        this.pourcentagePar= pourcentagePar;
+        this.pourcentageMag= pourcentageMag;
+        this.pourcentageResistMag= pourcentageResistMag;
+        this.degAtt= degAtt;
+        this.degMag= degMag;
+        this.distAttMax= distAttMax;
+        this.pos= pos;
+        
+    }
+    
+    public Personnage( Personnage p){
+        this.nom= p.nom;
+        this.ptVie= p.ptVie;
+        this.ptMana= p.ptMana;
+        this.pourcentageAtt= p.pourcentageAtt;
+        this.pourcentagePar= p.pourcentagePar;
+        this.pourcentageMag= p.pourcentageMag;
+        this.pourcentageResistMag= p.pourcentageResistMag;
+        this.degAtt= p.degAtt;
+        this.degMag= p.degMag;
+        this.distAttMax= p.distAttMax;
+        this.pos= p.pos;
     }
     
     public String getNom() {
