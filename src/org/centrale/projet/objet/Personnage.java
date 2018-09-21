@@ -12,17 +12,17 @@ package org.centrale.projet.objet;
 abstract class Personnage {
     
     //création des attributs de la classe abstraite parente
-    private String nom;
-    private int ptVie;
-    private int ptMana;
-    private int pourcentageAtt;
-    private int pourcentagePar;
-    private int pourcentageMag;
-    private int pourcentageResistMag;
-    private int degAtt;
-    private int degMag;
-    private int distAttMax;
-    private Point2D pos;
+    protected String nom;
+    protected int ptVie;
+    protected int ptMana;
+    protected int pourcentageAtt;
+    protected int pourcentagePar;
+    protected int pourcentageMag;
+    protected int pourcentageResistMag;
+    protected int degAtt;
+    protected int degMag;
+    protected int distAttMax;
+    protected Point2D pos;
 
     //création des méthodes constructeurs
     public Personnage(
@@ -64,7 +64,11 @@ abstract class Personnage {
         this.distAttMax= p.distAttMax;
         this.pos= p.pos;
     }
+
+    public Personnage() {
+    }
     
+    //definition des accesseurs et mutateurs
     public String getNom() {
         return nom;
     }
