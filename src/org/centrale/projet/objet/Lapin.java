@@ -10,41 +10,39 @@ package org.centrale.projet.objet;
  * @author Thibs
  */
 public class Lapin extends Monstre {
-    
+
     // création des attributs de la classe Lapin
     // pas de nouveaux attributs pour les lapins
-    
     //création des méthodes constructeurs
     public Lapin(
-        int ptVie, 
-        int pourcentageAtt, 
-        int pourcentagePar,
-        int degAtt,
-        Point2D pos
+            int ptVie,
+            int pourcentageAtt,
+            int pourcentagePar,
+            int degAtt,
+            Point2D pos
     ) {
         super(
-            ptVie,
-            pourcentageAtt,
-            pourcentagePar,
-            degAtt,
-            pos 
+                ptVie,
+                pourcentageAtt,
+                pourcentagePar,
+                degAtt,
+                pos
         );
     }
-    
+
     public Lapin(Lapin l) {
         this.ptVie = l.ptVie;
         this.pourcentageAtt = l.pourcentageAtt;
         this.pourcentagePar = l.pourcentagePar;
         this.degAtt = l.degAtt;
         this.pos = l.pos;
-        
+
     }
-    
+
     public Lapin() {
     }
-    
-    public void affiche(){
+
+    public void affiche() {
         super.affiche("Lapin");
     }
 }
-

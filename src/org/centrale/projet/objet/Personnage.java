@@ -10,7 +10,7 @@ package org.centrale.projet.objet;
  * @author grego
  */
 abstract class Personnage {
-    
+
     //création des attributs de la classe abstraite parente
     protected String nom;
     protected int ptVie;
@@ -26,17 +26,17 @@ abstract class Personnage {
 
     //création des méthodes constructeurs
     public Personnage(
-        String nom, 
-        int ptVie, 
-        int ptMana,
-        int pourcentageAtt, 
-        int pourcentagePar, 
-        int pourcentageMag, 
-        int pourcentageResistMag, 
-        int degAtt, 
-        int degMag, 
-        int distAttMax,
-        Point2D pos
+            String nom,
+            int ptVie,
+            int ptMana,
+            int pourcentageAtt,
+            int pourcentagePar,
+            int pourcentageMag,
+            int pourcentageResistMag,
+            int degAtt,
+            int degMag,
+            int distAttMax,
+            Point2D pos
     ) {
         this.nom = nom;
         this.ptVie = ptVie;
@@ -50,25 +50,25 @@ abstract class Personnage {
         this.distAttMax = distAttMax;
         this.pos = new Point2D(pos.getX(), pos.getY());
     }
-    
-    public Personnage( Personnage p){
-        this.nom= p.nom;
-        this.ptVie= p.ptVie;
-        this.ptMana= p.ptMana;
-        this.pourcentageAtt= p.pourcentageAtt;
-        this.pourcentagePar= p.pourcentagePar;
-        this.pourcentageMag= p.pourcentageMag;
-        this.pourcentageResistMag= p.pourcentageResistMag;
-        this.degAtt= p.degAtt;
-        this.degMag= p.degMag;
-        this.distAttMax= p.distAttMax;
+
+    public Personnage(Personnage p) {
+        this.nom = p.nom;
+        this.ptVie = p.ptVie;
+        this.ptMana = p.ptMana;
+        this.pourcentageAtt = p.pourcentageAtt;
+        this.pourcentagePar = p.pourcentagePar;
+        this.pourcentageMag = p.pourcentageMag;
+        this.pourcentageResistMag = p.pourcentageResistMag;
+        this.degAtt = p.degAtt;
+        this.degMag = p.degMag;
+        this.distAttMax = p.distAttMax;
         this.pos.setX(p.pos.getX());
         this.pos.setY(p.pos.getY());
     }
 
     public Personnage() {
     }
-    
+
     //definition des accesseurs et mutateurs
     public String getNom() {
         return nom;
@@ -157,28 +157,28 @@ abstract class Personnage {
     public void setPos(Point2D pos) {
         this.pos = pos;
     }
-    
+
     public void deplace() {
         // TODO : faire une fonction de déplacement
     }
-    
+
     public void affiche() {
         System.out.println(
-            "Je suis un personnage, je possède " 
-            + this.getPtVie() 
-            + " points de vie et "
-            + this.getPtMana()
-            + " points de mana. Je suis actuellement en ["
-            + this.getPos().getX()+","+this.getPos().getY()
-            + "] et je suis en mesure de t'infliger "
-            + this.getDegAtt()
-            + " dégats avec mes attaques et "
-            + this.getDegMag()
-            + " dégats avec ma magie (probabilité respective de toucher de "
-            + this.getPourcentageAtt()
-            + " et "
-            + this.getPourcentageMag()
+                "Je suis un personnage, je possède "
+                + this.getPtVie()
+                + " points de vie et "
+                + this.getPtMana()
+                + " points de mana. Je suis actuellement en ["
+                + this.getPos().getX() + "," + this.getPos().getY()
+                + "] et je suis en mesure de t'infliger "
+                + this.getDegAtt()
+                + " dégats avec mes attaques et "
+                + this.getDegMag()
+                + " dégats avec ma magie (probabilité respective de toucher de "
+                + this.getPourcentageAtt()
+                + " et "
+                + this.getPourcentageMag()
         );
     }
-    
+
 }

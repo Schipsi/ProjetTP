@@ -10,16 +10,15 @@ package org.centrale.projet.objet;
  * @author grego
  */
 abstract class Monstre {
-    
+
     //définition des attributs de la classe
     protected int ptVie;
     protected int pourcentageAtt;
     protected int pourcentagePar;
     protected int degAtt;
     protected Point2D pos;
-    
-    //définition des constructeurs
 
+    //définition des constructeurs
     public Monstre(int ptVie, int pourcentageAtt, int pourcentagePar, int degAtt, Point2D pos) {
         this.ptVie = ptVie;
         this.pourcentageAtt = pourcentageAtt;
@@ -30,8 +29,8 @@ abstract class Monstre {
 
     public Monstre() {
     }
-    
-    public Monstre( Monstre m) {
+
+    public Monstre(Monstre m) {
         this.ptVie = m.ptVie;
         this.pourcentageAtt = m.pourcentageAtt;
         this.pourcentagePar = m.pourcentagePar;
@@ -39,10 +38,8 @@ abstract class Monstre {
         this.pos.setX(m.pos.getX());
         this.pos.setY(m.pos.getY());
     }
-    
-    
-    //définition des accesseurs et Mutateurs
 
+    //définition des accesseurs et Mutateurs
     public int getPtVie() {
         return ptVie;
     }
@@ -82,27 +79,27 @@ abstract class Monstre {
     public void setPos(Point2D pos) {
         this.pos = pos;
     }
-    
-    public void affiche(){
+
+    public void affiche() {
         System.out.println(" Bonjour gentil voyageur , je suis un gentil Monstre et voici mes stats :");
-        System.out.println("Point de Vie :"+this.ptVie);
-        System.out.println("Dégat d'attaque :"+this.degAtt);
-        System.out.println("Pourcentage d'attaque :"+this.pourcentageAtt);
-        System.out.println("pourcentage de Parade :"+this.pourcentagePar);
-        System.out.println("position : ("+this.getPos().getX()+","+this.getPos().getX()+")");
+        System.out.println("Point de Vie :" + this.ptVie);
+        System.out.println("Dégat d'attaque :" + this.degAtt);
+        System.out.println("Pourcentage d'attaque :" + this.pourcentageAtt);
+        System.out.println("pourcentage de Parade :" + this.pourcentagePar);
+        System.out.println("position : (" + this.getPos().getX() + "," + this.getPos().getX() + ")");
     }
-    
-    public void affiche(String nomMonstre){
-        System.out.println(" Bonjour gentil voyageur , je suis un gentil "+nomMonstre+" et voici mes stats :");
-        System.out.println("Point de Vie :"+this.ptVie);
-        System.out.println("Dégat d'attaque :"+this.degAtt);
-        System.out.println("Pourcentage d'attaque :"+this.pourcentageAtt);
-        System.out.println("pourcentage de Parade :"+this.pourcentagePar);
-        System.out.println("position : ("+this.getPos().getX()+","+this.getPos().getY()+")");
+
+    public void affiche(String nomMonstre) {
+        System.out.println(" Bonjour gentil voyageur , je suis un gentil " + nomMonstre + " et voici mes stats :");
+        System.out.println("Point de Vie :" + this.ptVie);
+        System.out.println("Dégat d'attaque :" + this.degAtt);
+        System.out.println("Pourcentage d'attaque :" + this.pourcentageAtt);
+        System.out.println("pourcentage de Parade :" + this.pourcentagePar);
+        System.out.println("position : (" + this.getPos().getX() + "," + this.getPos().getY() + ")");
     }
-    
-    public void deplace(){
-        
+
+    public void deplace() {
+
     }
     
 }

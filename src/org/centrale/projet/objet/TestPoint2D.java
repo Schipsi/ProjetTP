@@ -10,11 +10,11 @@ package org.centrale.projet.objet;
  * @author grego
  */
 public class TestPoint2D {
-    
-    public static void main(String[] args){
+
+    public static void main(String[] args) {
         System.out.println("on créé 3 points avec les 3 constructeurs différents et on les affiche.");
         Point2D p1 = new Point2D();
-        Point2D p2 = new Point2D(10,20);
+        Point2D p2 = new Point2D(10, 20);
         Point2D p3 = new Point2D(p2);
         p1.affiche();
         p2.affiche();
@@ -26,7 +26,7 @@ public class TestPoint2D {
         p2.affiche();
         p2.modifier(5, 20);
         p2.affiche();
-        System.out.println("on affiche les coordonnées du point 1 avec les accesseurs : x="+ p1.getX()+", y="+p1.getY());
+        System.out.println("on affiche les coordonnées du point 1 avec les accesseurs : x=" + p1.getX() + ", y=" + p1.getY());
         System.out.println("on modifie les coordonnées du point 1 avec les modificateurs");
         p1.setX(99);
         p1.setY(100);

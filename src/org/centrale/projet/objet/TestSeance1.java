@@ -10,8 +10,8 @@ package org.centrale.projet.objet;
  * @author grego
  */
 public class TestSeance1 {
-    
-    public static void main(String[] args){
-    World woEcn = new World();
+
+    public static void main(String[] args) {
+        World woEcn = new World();
     }
 }

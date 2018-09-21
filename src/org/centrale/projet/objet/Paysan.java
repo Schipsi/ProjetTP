@@ -12,35 +12,33 @@ package org.centrale.projet.objet;
 public class Paysan extends Personnage {
 
     //définition des Attributs
-    
     //définition des constructeurs
     public Paysan(
-            String nom, 
-            int ptVie, 
-            int ptMana, 
-            int pourcentageAtt, 
-            int pourcentagePar, 
-            int pourcentageMag, 
-            int pourcentageResistMag, 
-            int degAtt, 
-            int degMag, 
-            int distAttMax, 
-            Point2D pos)
-    {
-        super(nom, 
-              ptVie, 
-              ptMana, 
-              pourcentageAtt, 
-              pourcentagePar, 
-              pourcentageMag, 
-              pourcentageResistMag, 
-              degAtt, 
-              degMag, 
-              distAttMax, 
-              pos);
+            String nom,
+            int ptVie,
+            int ptMana,
+            int pourcentageAtt,
+            int pourcentagePar,
+            int pourcentageMag,
+            int pourcentageResistMag,
+            int degAtt,
+            int degMag,
+            int distAttMax,
+            Point2D pos) {
+        super(nom,
+                ptVie,
+                ptMana,
+                pourcentageAtt,
+                pourcentagePar,
+                pourcentageMag,
+                pourcentageResistMag,
+                degAtt,
+                degMag,
+                distAttMax,
+                pos);
     }
-    
-    public Paysan( Paysan p){
+
+    public Paysan(Paysan p) {
         this.nom = p.nom;
         this.ptVie = p.ptVie;
         this.ptMana = p.ptMana;
