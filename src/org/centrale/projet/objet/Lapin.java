@@ -43,5 +43,8 @@ public class Lapin extends Monstre {
     public Lapin() {
     }
     
+    public void affiche(){
+        super.affiche("Lapin");
+    }
 }
 
