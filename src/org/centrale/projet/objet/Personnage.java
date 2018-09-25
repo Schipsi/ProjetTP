@@ -5,11 +5,13 @@
  */
 package org.centrale.projet.objet;
 
+import java.util.Random;
+
 /**
  *
  * @author grego
  */
-abstract class Personnage {
+abstract class Personnage extends Creature{
 
     //création des attributs de la classe abstraite parente
     protected String nom;
@@ -23,6 +25,7 @@ abstract class Personnage {
     protected int degMag;
     protected int distAttMax;
     protected Point2D pos;
+    protected int ptPar;
 
     //création des méthodes constructeurs
     public Personnage(
@@ -157,9 +160,26 @@ abstract class Personnage {
     public void setPos(Point2D pos) {
         this.pos = pos;
     }
+    
+    public int getPtPar() {
+        return ptPar;
+    }
+
+    public void setPtPar(int ptPar) {
+        this.ptPar = ptPar;
+    }
 
     public void deplace() {
-        // TODO : faire une fonction de déplacement
+        int x = 0;
+        int y = 0;
+        Random generateurAleatoire = new Random();
+        
+        while(x==0 && y==0){
+            x=generateurAleatoire.nextInt(3)-1;
+            y=generateurAleatoire.nextInt(3)-1;
+        }
+    this.setPos(new Point2D(x+this.getPos().getX(),y+this.getPos().getY()));
+
     }
 
     public void affiche() {
@@ -181,5 +201,23 @@ abstract class Personnage {
             + ")"
         );
     }
-
+    public void affiche(String classe) {
+        System.out.println(
+            "Je suis un "+classe+", je possède "
+            + this.getPtVie()
+            + " points de vie et "
+            + this.getPtMana()
+            + " points de mana. \nJe suis actuellement en ["
+            + this.getPos().getX() + "," + this.getPos().getY()
+            + "] et je suis en mesure de t'infliger "
+            + this.getDegAtt()
+            + " dégats avec mes attaques et "
+            + this.getDegMag()
+            + " dégats avec ma magie \n(probabilité respective de toucher de "
+            + this.getPourcentageAtt()
+            + " et "
+            + this.getPourcentageMag()
+            + ")"
+        );
+    }
 }

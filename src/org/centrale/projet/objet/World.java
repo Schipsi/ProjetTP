@@ -76,5 +76,8 @@ public class World {
         robin.affiche();
         peon.affiche();
         bugs.affiche();
+        
+        robin.deplace();
+        robin.affiche();
     }
 }
