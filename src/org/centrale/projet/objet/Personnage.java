@@ -15,17 +15,11 @@ abstract class Personnage extends Creature{
 
     //création des attributs de la classe abstraite parente
     protected String nom;
-    protected int ptVie;
     protected int ptMana;
-    protected int pourcentageAtt;
-    protected int pourcentagePar;
     protected int pourcentageMag;
     protected int pourcentageResistMag;
-    protected int degAtt;
     protected int degMag;
     protected int distAttMax;
-    protected Point2D pos;
-    protected int ptPar;
 
     //création des méthodes constructeurs
     public Personnage(
@@ -81,36 +75,12 @@ abstract class Personnage extends Creature{
         this.nom = nom;
     }
 
-    public int getPtVie() {
-        return ptVie;
-    }
-
-    public void setPtVie(int ptVie) {
-        this.ptVie = ptVie;
-    }
-
     public int getPtMana() {
         return ptMana;
     }
 
     public void setPtMana(int ptMana) {
         this.ptMana = ptMana;
-    }
-
-    public int getPourcentageAtt() {
-        return pourcentageAtt;
-    }
-
-    public void setPourcentageAtt(int pourcentageAtt) {
-        this.pourcentageAtt = pourcentageAtt;
-    }
-
-    public int getPourcentagePar() {
-        return pourcentagePar;
-    }
-
-    public void setPourcentagePar(int pourcentagePar) {
-        this.pourcentagePar = pourcentagePar;
     }
 
     public int getPourcentageMag() {
@@ -129,14 +99,6 @@ abstract class Personnage extends Creature{
         this.pourcentageResistMag = pourcentageResistaMag;
     }
 
-    public int getDegAtt() {
-        return degAtt;
-    }
-
-    public void setDegAtt(int degAtt) {
-        this.degAtt = degAtt;
-    }
-
     public int getDegMag() {
         return degMag;
     }
@@ -151,35 +113,6 @@ abstract class Personnage extends Creature{
 
     public void setDistAttMax(int distAttMax) {
         this.distAttMax = distAttMax;
-    }
-
-    public Point2D getPos() {
-        return pos;
-    }
-
-    public void setPos(Point2D pos) {
-        this.pos = pos;
-    }
-    
-    public int getPtPar() {
-        return ptPar;
-    }
-
-    public void setPtPar(int ptPar) {
-        this.ptPar = ptPar;
-    }
-
-    public void deplace() {
-        int x = 0;
-        int y = 0;
-        Random generateurAleatoire = new Random();
-        
-        while(x==0 && y==0){
-            x=generateurAleatoire.nextInt(3)-1;
-            y=generateurAleatoire.nextInt(3)-1;
-        }
-    this.setPos(new Point2D(x+this.getPos().getX(),y+this.getPos().getY()));
-
     }
 
     public void affiche() {
@@ -219,5 +152,21 @@ abstract class Personnage extends Creature{
             + this.getPourcentageMag()
             + ")"
         );
+    }
+    
+    public void combattre(Creature creature) {
+        if (1 == this.getPos().distance(creature.getPos())) {
+            System.out.println("Attaque au corps à corps");
+            Random dice = new Random();
+            if (this.getPourcentageAtt() <= dice.nextInt(100)) {
+                if (dice.nextInt(100) > creature.getPourcentagePar()) {
+                
+                } else if (this.getDegAtt() > creature.getPtPar()) { //on test si les dégats d'attaques sont supérieurs au dégats de parade sinon ça va heal
+                    creature.setPtVie(creature.getPtVie() - this.getDegAtt() + creature.getPtPar());
+                }
+            }
+        } else {
+            System.out.println("Cette unité est trop loin pour être attaquée !");
+        }
     }
 }

@@ -28,21 +28,7 @@ public class Point2D {
         x = p.x;
         y = p.y;
     }
-
-    public void affiche() {
-        System.out.println("[" + this.x + ";" + this.y + "]");
-    }
-
-    public void translater(int x, int y) {
-        this.x += x;
-        this.y += y;
-    }
-
-    public void modifier(int x, int y) {
-        this.x = x;
-        this.y = y;
-    }
-
+    
     public int getX() {
         return x;
     }
@@ -57,5 +43,23 @@ public class Point2D {
 
     public void setY(int y) {
         this.y = y;
+    }
+
+    public void affiche() {
+        System.out.println("[" + this.x + ";" + this.y + "]");
+    }
+
+    public void translater(int x, int y) {
+        this.x += x;
+        this.y += y;
+    }
+
+    public void modifier(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
+    
+    public double distance(Point2D point) {
+        return Math.sqrt(Math.pow((double)this.getX() - point.getX(), (double)2) + Math.pow((double)this.getY() - point.getY(), (double)2));
     }
 }

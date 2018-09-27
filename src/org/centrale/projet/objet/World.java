@@ -28,7 +28,7 @@ public class World {
     public void creeMondeAlea() {
 
         Random generateurAleatoire = new Random();
-
+        
         //On positionne l'archer robin
         robin.setPos(new Point2D(generateurAleatoire.nextInt(TAILLEMAX), generateurAleatoire.nextInt(TAILLEMAX)));
 

@@ -5,6 +5,8 @@
  */
 package org.centrale.projet.objet;
 
+import java.util.Random;
+
 /**
  *
  * @author grego
@@ -93,5 +95,30 @@ public class Archer extends Personnage {
             + ")"
         );
     }
-
+    
+    public void combattre(Creature creature) {
+        Random dice = new Random();
+        if (1 == this.getPos().distance(creature.getPos())) {
+            System.out.println("Attaque au corps à corps");
+            if (this.getPourcentageAtt() <= dice.nextInt(100)) {
+                if (dice.nextInt(100) > creature.getPourcentagePar()) {
+                
+                } else if (this.getDegAtt() > creature.getPtPar()) { //on test si les dégats d'attaques sont supérieurs au dégats de parade sinon ça va heal
+                    creature.setPtVie(creature.getPtVie() - this.getDegAtt() + creature.getPtPar());
+                }
+            }
+        } else if (this.getDistAttMax() >= this.getPos().distance(creature.getPos())) {
+            System.out.println("Je peux attaquer a distance");
+            if (1 <= this.getNbFleches()) {
+                this.setNbFleches(this.getNbFleches() - 1);
+                if (this.getPourcentageAtt() <= dice.nextInt(100)) {
+                    creature.setPtVie(creature.getPtVie() - this.getDegAtt());
+                }
+            } else {
+                System.out.println("Je n'ai plus de flêches...");
+            }
+        } else {
+            System.out.println("Cette unité est trop loin pour être attaquée !");
+        }
+    }
 }
