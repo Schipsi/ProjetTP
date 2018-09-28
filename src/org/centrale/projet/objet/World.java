@@ -17,9 +17,9 @@ import java.util.Random;
 public class World {
 
     //création des personnages du monde 
-    Archer robin = new Archer("robin", 99, 98, 80, 0, 2, 6, 13, 4, 6, new Point2D(), 16);
-    Paysan peon = new Paysan("peon", 20, 16, 50, 10, 0, 0, 2, 1, 1, new Point2D());
-    Lapin bugs = new Lapin(6, 20, 10, 1, new Point2D());
+    Archer robin = new Archer("robin", 99, 95, 98, 80, 0, 2, 6, 13, 4, 6, new Point2D(), 16);
+    Paysan peon = new Paysan("peon", 20, 18, 16, 50, 10, 0, 0, 2, 1, 1, new Point2D());
+    Lapin bugs = new Lapin(6, 5, 20, 10, 1, new Point2D());
 
     //définition de la taille max du monde 
     private final int TAILLEMAX = 100;
@@ -34,7 +34,7 @@ public class World {
         
         //On positionne l'archer robin
         robin.setPos(new Point2D(generateurAleatoire.nextInt(TAILLEMAX), generateurAleatoire.nextInt(TAILLEMAX)));
-
+        
         boolean verifyP = false;
 
         //on positionne le paysan peon
@@ -79,9 +79,22 @@ public class World {
         robin.affiche();
         peon.affiche();
         bugs.affiche();
+        Archer guillaumeT = new Archer();
+        guillaumeT.affiche();
         
         robin.deplace();
+        peon.deplace();
+        bugs.deplace();
+        
         robin.affiche();
+        peon.affiche();
+        bugs.affiche();
+        guillaumeT.affiche();
+        
+
+        
+        
+        
     }
     
     public void CreeMondeAlea(Creature[] creature){

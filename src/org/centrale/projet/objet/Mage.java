@@ -16,6 +16,7 @@ public class Mage extends Personnage {
     public Mage(
             String nom,
             int ptVie,
+            int ptPar,
             int ptMana,
             int pourcentageAtt,
             int pourcentagePar,
@@ -24,39 +25,32 @@ public class Mage extends Personnage {
             int degAtt,
             int degMag,
             int distAttMax,
-            Point2D pos,
-            int nbf
+            Point2D pos
     ) {
         super(
-                nom,
-                ptVie,
-                ptMana,
-                pourcentageAtt,
-                pourcentagePar,
-                pourcentageMag,
-                pourcentageResistMag,
-                degAtt,
-                degMag,
-                distAttMax,
-                pos
+            nom,
+            ptVie,
+            ptPar,
+            ptMana,
+            pourcentageAtt,
+            pourcentagePar,
+            pourcentageMag,
+            pourcentageResistMag,
+            degAtt,
+            degMag,
+            distAttMax,
+            pos
         );
     }
 
     public Mage(Mage m) {
-        this.nom = m.nom;
-        this.ptVie = m.ptVie;
-        this.ptMana = m.ptMana;
-        this.pourcentageAtt = m.pourcentageAtt;
-        this.pourcentagePar = m.pourcentagePar;
-        this.pourcentageMag = m.pourcentageMag;
-        this.pourcentageResistMag = m.pourcentageResistMag;
-        this.degAtt = m.degAtt;
-        this.degMag = m.degMag;
-        this.distAttMax = m.distAttMax;
-        this.pos = m.pos;
+        super(
+            (Personnage)m
+        );
     }
 
     public Mage() {
+        super();
     }
     
     public void affiche() {

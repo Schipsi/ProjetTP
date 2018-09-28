@@ -16,30 +16,30 @@ public class Lapin extends Monstre {
     //création des méthodes constructeurs
     public Lapin(
             int ptVie,
+            int ptPar,
             int pourcentageAtt,
             int pourcentagePar,
             int degAtt,
             Point2D pos
     ) {
         super(
-                ptVie,
-                pourcentageAtt,
-                pourcentagePar,
-                degAtt,
-                pos
+            ptVie,
+            ptPar,
+            pourcentageAtt,
+            pourcentagePar,
+            degAtt,
+            pos
         );
     }
 
     public Lapin(Lapin l) {
-        this.ptVie = l.ptVie;
-        this.pourcentageAtt = l.pourcentageAtt;
-        this.pourcentagePar = l.pourcentagePar;
-        this.degAtt = l.degAtt;
-        this.pos = l.pos;
-
+        super(
+            (Monstre)l
+        );
     }
 
     public Lapin() {
+        super();
     }
 
     public void affiche() {

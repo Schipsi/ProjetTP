@@ -20,6 +20,7 @@ public class Archer extends Personnage {
     public Archer(
             String nom,
             int ptVie,
+            int ptPar,
             int ptMana,
             int pourcentageAtt,
             int pourcentagePar,
@@ -32,37 +33,32 @@ public class Archer extends Personnage {
             int nbf
     ) {
         super(
-                nom,
-                ptVie,
-                ptMana,
-                pourcentageAtt,
-                pourcentagePar,
-                pourcentageMag,
-                pourcentageResistMag,
-                degAtt,
-                degMag,
-                distAttMax,
-                pos
+            nom,
+            ptVie,
+            ptPar,
+            ptMana,
+            pourcentageAtt,
+            pourcentagePar,
+            pourcentageMag,
+            pourcentageResistMag,
+            degAtt,
+            degMag,
+            distAttMax,
+            pos
         );
         this.nbFleches = nbf;
     }
 
     public Archer(Archer a) {
-        this.nom = a.nom;
-        this.ptVie = a.ptVie;
-        this.ptMana = a.ptMana;
-        this.pourcentageAtt = a.pourcentageAtt;
-        this.pourcentagePar = a.pourcentagePar;
-        this.pourcentageMag = a.pourcentageMag;
-        this.pourcentageResistMag = a.pourcentageResistMag;
-        this.degAtt = a.degAtt;
-        this.degMag = a.degMag;
-        this.distAttMax = a.distAttMax;
-        this.pos = a.pos;
+        super(
+            (Personnage)a
+        );
         this.nbFleches = a.nbFleches;
     }
 
     public Archer() {
+        super();
+        this.nbFleches = 0;
     }
 
     //définition des Accesseurs et Mutateurs

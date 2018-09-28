@@ -33,36 +33,51 @@ public class Creature {
      /**
       * méthode constructeur de la classe Creature prenant en compte les paramètres suivants 
       * @param ptVie
+      * @param ptPar
       * @param pourcentageAtt
       * @param pourcentagePar
       * @param degAtt
       * @param pos 
       */
-    public Creature(int ptVie, int pourcentageAtt, int pourcentagePar, int degAtt, Point2D pos) {
+    public Creature(
+        int ptVie, 
+        int ptPar, 
+        int pourcentageAtt, 
+        int pourcentagePar, 
+        int degAtt, 
+        Point2D pos
+    ) {
         this.ptVie = ptVie;
+        this.ptPar = ptPar;
         this.pourcentageAtt = pourcentageAtt;
         this.pourcentagePar = pourcentagePar;
         this.degAtt = degAtt;
         this.pos = new Point2D(pos.getX(), pos.getY());
     }
-   
+    
+    /**
+     * méthode constructeur faisant une copie d'une autre creature
+     * @param c creature 
+     */
+    public Creature(Creature c) {
+        this.ptVie = c.ptVie;
+        this.ptPar = c.ptPar;
+        this.pourcentageAtt = c.pourcentageAtt;
+        this.pourcentagePar = c.pourcentagePar;
+        this.degAtt = c.degAtt;
+        this.pos = new Point2D(c.pos.getX(), c.pos.getY());
+    }
+    
     /**
      * méthode constructeur de la classe Creature sans paramètres
      */
     public Creature() {
-    }
-    
-    /**
-     * méthode constructeur faisant une copie d'une autre creature
-     * @param m creature 
-     */
-    public Creature(Creature m) {
-        this.ptVie = m.ptVie;
-        this.pourcentageAtt = m.pourcentageAtt;
-        this.pourcentagePar = m.pourcentagePar;
-        this.degAtt = m.degAtt;
-        this.pos.setX(m.pos.getX());
-        this.pos.setY(m.pos.getY());
+        this.ptVie = 0;
+        this.ptPar = 0;
+        this.pourcentageAtt = 0;
+        this.pourcentagePar = 0;
+        this.degAtt = 0;
+        this.pos = new Point2D();
     }
     
     public int getPtVie() {

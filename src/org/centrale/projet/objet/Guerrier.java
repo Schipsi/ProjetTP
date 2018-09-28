@@ -5,8 +5,6 @@
  */
 package org.centrale.projet.objet;
 
-import java.util.Random;
-
 /**
  *
  * @author Thibs
@@ -16,6 +14,7 @@ public class Guerrier extends Personnage {
     public Guerrier(
             String nom,
             int ptVie,
+            int ptPar,
             int ptMana,
             int pourcentageAtt,
             int pourcentagePar,
@@ -30,6 +29,7 @@ public class Guerrier extends Personnage {
         super(
                 nom,
                 ptVie,
+                ptPar,
                 ptMana,
                 pourcentageAtt,
                 pourcentagePar,
@@ -43,20 +43,13 @@ public class Guerrier extends Personnage {
     }
 
     public Guerrier(Guerrier g) {
-        this.nom = g.nom;
-        this.ptVie = g.ptVie;
-        this.ptMana = g.ptMana;
-        this.pourcentageAtt = g.pourcentageAtt;
-        this.pourcentagePar = g.pourcentagePar;
-        this.pourcentageMag = g.pourcentageMag;
-        this.pourcentageResistMag = g.pourcentageResistMag;
-        this.degAtt = g.degAtt;
-        this.degMag = g.degMag;
-        this.distAttMax = g.distAttMax;
-        this.pos = g.pos;
+        super(
+            (Personnage)g
+        );
     }
 
     public Guerrier() {
+        super();
     }
     
     public void affiche() {

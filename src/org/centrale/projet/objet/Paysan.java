@@ -16,6 +16,7 @@ public class Paysan extends Personnage {
     public Paysan(
             String nom,
             int ptVie,
+            int ptPar,
             int ptMana,
             int pourcentageAtt,
             int pourcentagePar,
@@ -25,17 +26,19 @@ public class Paysan extends Personnage {
             int degMag,
             int distAttMax,
             Point2D pos) {
-        super(nom,
-                ptVie,
-                ptMana,
-                pourcentageAtt,
-                pourcentagePar,
-                pourcentageMag,
-                pourcentageResistMag,
-                degAtt,
-                degMag,
-                distAttMax,
-                pos);
+        super(
+            nom,
+            ptVie,
+            ptPar,
+            ptMana,
+            pourcentageAtt,
+            pourcentagePar,
+            pourcentageMag,
+            pourcentageResistMag,
+            degAtt,
+            degMag,
+            distAttMax,
+            pos);
     }
 
     public Paysan(Paysan p) {
@@ -53,7 +56,6 @@ public class Paysan extends Personnage {
     }
 
     public Paysan() {
+        super();
     }
-    //définition des Accesseurs et Mutateurs
-
 }

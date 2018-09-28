@@ -15,13 +15,22 @@ abstract class Monstre extends Creature{
     /**
      * Constructeur de la classe Monstre prenant en compte les attributs suivants
      * @param ptVie
+     * @param ptPar
      * @param pourcentageAtt
      * @param pourcentagePar
      * @param degAtt
      * @param pos 
      */
-    public Monstre(int ptVie, int pourcentageAtt, int pourcentagePar, int degAtt, Point2D pos) {
+    public Monstre(
+        int ptVie, 
+        int ptPar,
+        int pourcentageAtt, 
+        int pourcentagePar, 
+        int degAtt, 
+        Point2D pos
+    ) {
         this.ptVie = ptVie;
+        this.ptPar = ptPar;
         this.pourcentageAtt = pourcentageAtt;
         this.pourcentagePar = pourcentagePar;
         this.degAtt = degAtt;
@@ -29,22 +38,20 @@ abstract class Monstre extends Creature{
     }
     
     /**
-     * Constructeur vide de la classe Monstre retournant un Monstre null
-     */
-    public Monstre() {
-    }
-    
-    /**
      * Constructeur copie de la classe Monstre sortant une copie de l'entrée
      * @param m Mosntre qu'on veut copier
      */
     public Monstre(Monstre m) {
-        this.ptVie = m.ptVie;
-        this.pourcentageAtt = m.pourcentageAtt;
-        this.pourcentagePar = m.pourcentagePar;
-        this.degAtt = m.degAtt;
-        this.pos.setX(m.pos.getX());
-        this.pos.setY(m.pos.getY());
+        super(
+            (Creature)m
+        );
+    }
+    
+    /**
+     * Constructeur vide de la classe Monstre retournant un Monstre null
+     */
+    public Monstre() {
+        super();
     }
     
     /**

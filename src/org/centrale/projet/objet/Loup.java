@@ -11,15 +11,29 @@ package org.centrale.projet.objet;
  */
 public class Loup extends Monstre{
 
-    public Loup(int ptVie, int pourcentageAtt, int pourcentagePar, int degAtt, Point2D pos) {
-        super(ptVie, pourcentageAtt, pourcentagePar, degAtt, pos);
-    }
-
-    public Loup() {
+    public Loup(
+        int ptVie, 
+        int ptPar, 
+        int pourcentageAtt, 
+        int pourcentagePar, 
+        int degAtt, 
+        Point2D pos
+    ) {
+        super(
+            ptVie, 
+            ptPar, 
+            pourcentageAtt, 
+            pourcentagePar, 
+            degAtt, 
+            pos
+        );
     }
 
     public Loup(Monstre m) {
         super(m);
+    }
+    
+        public Loup() {
     }
     
     public void affiche(){

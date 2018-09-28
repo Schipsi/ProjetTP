@@ -5,8 +5,6 @@
  */
 package org.centrale.projet.objet;
 
-import java.util.Random;
-
 /**
  *
  * @author grego
@@ -46,6 +44,7 @@ abstract class Personnage extends Creature{
     public Personnage(
             String nom,
             int ptVie,
+            int ptPar,
             int ptMana,
             int pourcentageAtt,
             int pourcentagePar,
@@ -58,6 +57,7 @@ abstract class Personnage extends Creature{
     ) {
         this.nom = nom;
         this.ptVie = ptVie;
+        this.ptPar = ptPar;
         this.ptMana = ptMana;
         this.pourcentageAtt = pourcentageAtt;
         this.pourcentagePar = pourcentagePar;
@@ -74,24 +74,28 @@ abstract class Personnage extends Creature{
      * @param p Personnage
      */
     public Personnage(Personnage p) {
+        super(
+            (Creature)p
+        );
         this.nom = p.nom;
-        this.ptVie = p.ptVie;
         this.ptMana = p.ptMana;
-        this.pourcentageAtt = p.pourcentageAtt;
-        this.pourcentagePar = p.pourcentagePar;
         this.pourcentageMag = p.pourcentageMag;
         this.pourcentageResistMag = p.pourcentageResistMag;
-        this.degAtt = p.degAtt;
         this.degMag = p.degMag;
         this.distAttMax = p.distAttMax;
-        this.pos.setX(p.pos.getX());
-        this.pos.setY(p.pos.getY());
     }
     
     /**
      * Constructeur de personnage ne prenant pas de paramètres et retournant un personnage null
      */
     public Personnage() {
+        super();
+        this.nom = null;
+        this.ptMana = 0;
+        this.pourcentageMag = 0;
+        this.pourcentageResistMag = 0;
+        this.degMag = 0;
+        this.distAttMax = 0;
     }
 
     //definition des accesseurs et mutateurs
