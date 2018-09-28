@@ -152,14 +152,20 @@ public class Creature {
         if (1 == this.getPos().distance(creature.getPos())) {
             System.out.println("Attaque au corps à corps");
             Random dice = new Random();
-            if (this.getPourcentageAtt() <= dice.nextInt(100) + 1 ) {
-                if (dice.nextInt(100) + 1 > creature.getPourcentagePar()) {
-                
+            if (this.getPourcentageAtt() >= dice.nextInt(100) + 1 ) {
+                System.out.println("j'ai réussi mon jet d'attaque ");
+                if (dice.nextInt(100) + 1 < creature.getPourcentagePar()) {
+                    System.out.println("il a réussi a paré ");
                 } else if (this.getDegAtt() > creature.getPtPar()) { //on test si les dégats d'attaques sont supérieurs au dégats de parade sinon ça va heal
                     creature.setPtVie(creature.getPtVie() - this.getDegAtt() + creature.getPtPar());
+                    System.out.println("il s'est pris "+ (this.getDegAtt() - creature.getPtPar())+" dégats");
                 }
             }
-        } else {
+            else {
+                System.out.println("j'ai raté mon jet d'attaque ");
+            }
+        }
+        else {
             System.out.println("Cette unité est trop loin pour être attaquée !");
         }
     }

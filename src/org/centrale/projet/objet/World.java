@@ -17,17 +17,41 @@ import java.util.Random;
 public class World {
 
     //création des personnages du monde 
-    Archer robin = new Archer("robin", 99, 95, 98, 80, 0, 2, 6, 13, 4, 6, new Point2D(), 16);
-    Paysan peon = new Paysan("peon", 20, 18, 16, 50, 10, 0, 0, 2, 1, 1, new Point2D());
-    Lapin bugs = new Lapin(6, 5, 20, 10, 1, new Point2D());
-
+    Archer robin = new Archer("robin", 99, 10, 15, 90, 70, 20, 40, 15, 15, 15, new Point2D(), 16);
+    Paysan peon = new Paysan("peon", 20, 1, 16, 50, 10, 0, 0, 2, 1, 1, new Point2D());
+    Lapin bugs1 = new Lapin(6, 5, 20, 10, 1, new Point2D());
+    Lapin bugs2 = new Lapin(6, 5, 20, 10, 1, new Point2D());
+    Loup wolfie = new Loup(100, 5, 100, 30, 5, new Point2D());
+    Archer guillaumeT = new Archer(robin);
+    Guerrier grosBill = new Guerrier("grosBill", 99, 20, 0 , 90, 80, 5, 50, 0, 0, 1, new Point2D());
+    Mage merlin= new Mage("merlin", 50, 10, 100, 40, 20, 80, 70, 1, 10, 3, new Point2D());
     //définition de la taille max du monde 
     private final int TAILLEMAX = 100;
 
+    /**
+     * Définition de la Méthode Constructeur de la classe World qui sert plus ici à afficher nos résultats
+     */
     public World() {
-        creeMondeAlea();
+        guillaumeT.setNom("guillaumeT");
+        List<Creature> creaList = new ArrayList<>();
+        creaList.add(peon);
+        creaList.add(robin);
+        creaList.add(bugs1);
+        creaList.add(bugs2);
+        creaList.add(wolfie);
+        creaList.add(grosBill);
+        creaList.add(merlin);
+        creaList.add(guillaumeT);
+        creeMondeAlea(creaList);
+        peon.affiche();
+        peon.setPos(new Point2D(guillaumeT.getPos().getX()+2, wolfie.getPos().getY()));
+        guillaumeT.combattre(peon);
+        peon.affiche();
     }
 
+    /**
+     *  Méthode creeMondeAlea créant un positionnant des personnages bien défini au préalable, utilisée dans le tp1
+     */
     public void creeMondeAlea() {
 
         Random generateurAleatoire = new Random();
@@ -97,26 +121,47 @@ public class World {
         
     }
     
-    public void CreeMondeAlea(Creature[] creature){
-        List<Point2D> list2Points = new ArrayList <Point2D>();
+    /**
+     * Méthode creeMondeAlea créant un positionnant des personnages se trouvant dans une liste de créature au préalable,
+     * de manière à qu'ils ne se trouvent pas sur la même case et que chaque personnage soit à une distance de 5 d'au moins un autre personnage
+     * @param creature 
+     */
+    public void creeMondeAlea(List<Creature> creature){
+        List<Point2D> list2Points = new ArrayList<>();
         Random generateurAleatoire = new Random();
         boolean verify = false;
         for(Creature c : creature){
+            verify=false;
             while(!verify){
                 c.setPos(new Point2D(generateurAleatoire.nextInt(TAILLEMAX), generateurAleatoire.nextInt(TAILLEMAX)));
-                for(Point2D p: list2Points){
-                    if(p.getX()==c.getPos().getX() 
-                        && p.getY()==c.getPos().getY()){
-                        verify=false;
-                    }
-                    else{
-                        if(p.distance(c.getPos())<5){
-                            verify=true;
+                if(list2Points.isEmpty()){ //cas particulier pour le premier élément qui ne doit pas vérifier les conditions
+                    verify=true;
+                    list2Points.add(c.pos);
+                }
+                else {
+                    for(Point2D p: list2Points){
+                        if(0 == c.pos.distance(p)) {// on regarde si le point n'est pas sur un emplacement déjà pris
+                             verify=false;
+                             break;
                         }
+                        else{
+                            if(5 >= c.pos.distance(p)){//on regarde si un autre point est à moins de 5 cases de distances à part si c'est le premier
+                                verify=true;
+                            }
+                        }  
                     }
                 } 
             }
+            list2Points.add(c.pos);
         }
+        
+    }
+    
+    public void afficheWorld(){
+        
+    }
+    
+    public void tourDeJeu(){
         
     }
 }   

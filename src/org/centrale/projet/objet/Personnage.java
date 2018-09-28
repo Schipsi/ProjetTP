@@ -31,6 +31,7 @@ abstract class Personnage extends Creature{
      * Méthode constructeur de la classe Personnage prenant en compte les paramètres suivants
      * @param nom
      * @param ptVie
+     * @param ptPar
      * @param ptMana
      * @param pourcentageAtt
      * @param pourcentagePar

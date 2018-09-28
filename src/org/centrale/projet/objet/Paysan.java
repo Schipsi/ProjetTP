@@ -17,6 +17,7 @@ public class Paysan extends Personnage {
      * Définition de la méthode constructeur de la classe Paysan prenant en compte les attributs suivants
      * @param nom
      * @param ptVie
+     * @param ptPar
      * @param ptMana
      * @param pourcentageAtt
      * @param pourcentagePar

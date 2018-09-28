@@ -14,9 +14,28 @@ import java.util.Random;
 public class Archer extends Personnage {
 
     //définition des Attributs
+    /**
+     * nbFleches nombre de flèches possédées par l'archer
+     */
     private int nbFleches;
 
     //définition des constructeurs
+    /**
+     * Méthode constructeur prenant en compte les attributs suivants
+     * @param nom
+     * @param ptVie
+     * @param ptPar
+     * @param ptMana
+     * @param pourcentageAtt
+     * @param pourcentagePar
+     * @param pourcentageMag
+     * @param pourcentageResistMag
+     * @param degAtt
+     * @param degMag
+     * @param distAttMax
+     * @param pos
+     * @param nbf 
+     */
     public Archer(
             String nom,
             int ptVie,
@@ -49,6 +68,10 @@ public class Archer extends Personnage {
         this.nbFleches = nbf;
     }
 
+    /**
+     * Méthode Constructeur copie faisant la copie d'une instance d'archer déjà existante
+     * @param a 
+     */
     public Archer(Archer a) {
         super(
             (Personnage)a
@@ -56,6 +79,9 @@ public class Archer extends Personnage {
         this.nbFleches = a.nbFleches;
     }
 
+    /**
+     * Méthode Constructeur vide ne prenant en compte aucun attribut
+     */
     public Archer() {
         super();
         this.nbFleches = 0;
@@ -70,6 +96,9 @@ public class Archer extends Personnage {
         this.nbFleches = nbFleches;
     }
 
+    /**
+     * Méthode affiche de la classe Archer affichant les attributs d'une instance d'archer
+     */
     public void affiche() {
         System.out.println(
             "Je suis un archer, je possède "
@@ -92,6 +121,10 @@ public class Archer extends Personnage {
         );
     }
     
+    /**
+     * Override de la méthode combattre défini dans la classe Creature, car l'archer peut se battre à distance
+     * @param creature 
+     */
     public void combattre(Creature creature) {
         Random dice = new Random();
         if (1 == this.getPos().distance(creature.getPos())) {
@@ -107,7 +140,8 @@ public class Archer extends Personnage {
             System.out.println("Je peux attaquer a distance");
             if (1 <= this.getNbFleches()) {
                 this.setNbFleches(this.getNbFleches() - 1);
-                if (this.getPourcentageAtt() <= dice.nextInt(100)) {
+                if (this.getPourcentageAtt() >= dice.nextInt(100)) {
+                    System.out.println("J'ai réussi mon jet d'attaque");
                     creature.setPtVie(creature.getPtVie() - this.getDegAtt());
                 }
             } else {

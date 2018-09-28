@@ -10,7 +10,22 @@ package org.centrale.projet.objet;
  * @author Thibs
  */
 public class Guerrier extends Personnage {
-    
+   
+    /**
+     * Méthode Cosntructeur de la classe Guerrier prenant en compte les attributs suivants
+     * @param nom
+     * @param ptVie
+     * @param ptPar
+     * @param ptMana
+     * @param pourcentageAtt
+     * @param pourcentagePar
+     * @param pourcentageMag
+     * @param pourcentageResistMag
+     * @param degAtt
+     * @param degMag
+     * @param distAttMax
+     * @param pos
+     */
     public Guerrier(
             String nom,
             int ptVie,
@@ -23,8 +38,7 @@ public class Guerrier extends Personnage {
             int degAtt,
             int degMag,
             int distAttMax,
-            Point2D pos,
-            int nbf
+            Point2D pos
     ) {
         super(
                 nom,
@@ -42,16 +56,26 @@ public class Guerrier extends Personnage {
         );
     }
 
+    /**
+     * Méthode Constructeur Copie de la classe Guerrier copiant une instance déjà existante de la classe Guerrier
+     * @param g guerrier
+     */
     public Guerrier(Guerrier g) {
         super(
             (Personnage)g
         );
     }
-
+    
+     /**
+     * Méthode Constructeur vide de la classe Guerrier ne prenant en compte aucun attribut
+     */
     public Guerrier() {
         super();
     }
     
+    /**
+     * Méthode affiche de la classe Guerrier affichant les attributs d'une instance de guerrier
+     */
     public void affiche() {
         System.out.println(
             "Je suis un guerrier, je possède "

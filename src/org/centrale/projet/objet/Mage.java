@@ -17,6 +17,7 @@ public class Mage extends Personnage {
      * Méthode Constructeur de la classe Mage prenant en compte les attributs suivants
      * @param nom
      * @param ptVie
+     * @param ptPar
      * @param ptMana
      * @param pourcentageAtt
      * @param pourcentagePar
@@ -26,7 +27,6 @@ public class Mage extends Personnage {
      * @param degMag
      * @param distAttMax
      * @param pos
-     * @param nbf 
      */
     public Mage(
             String nom,
