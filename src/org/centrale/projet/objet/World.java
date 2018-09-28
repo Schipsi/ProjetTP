@@ -5,6 +5,9 @@
  */
 package org.centrale.projet.objet;
 
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -80,4 +83,28 @@ public class World {
         robin.deplace();
         robin.affiche();
     }
-}
+    
+    public void CreeMondeAlea(Creature[] creature){
+        List<Point2D> list2Points = new ArrayList <Point2D>();
+        Random generateurAleatoire = new Random();
+        boolean verify = false;
+        for(Creature c : creature){
+            while(!verify){
+                c.setPos(new Point2D(generateurAleatoire.nextInt(TAILLEMAX), generateurAleatoire.nextInt(TAILLEMAX)));
+                for(Point2D p: list2Points){
+                    if(p.getX()==c.getPos().getX() 
+                        && p.getY()==c.getPos().getY()){
+                        verify=false;
+                    }
+                    else{
+                        if(p.distance(c.getPos())<5){
+                            verify=true;
+                        }
+                    }
+                } 
+            }
+        }
+        
+    }
+    List<String> l = new ArrayList<>();
+}   
