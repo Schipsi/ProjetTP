@@ -45,4 +45,16 @@ public class Lapin extends Monstre {
     public void affiche() {
         super.affiche("Lapin");
     }
+    
+    public void combattre(Creature creature){
+        System.out.println("je suis un faible lapin qui ne peut pas combattre");
+    }
+    
+    public void fuir(Creature creature){
+        if (1 == this.getPos().distance(creature.getPos())){
+            this.deplace();
+            this.deplace();
+        }
+    }
+           
 }

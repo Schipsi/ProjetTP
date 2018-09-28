@@ -153,20 +153,4 @@ abstract class Personnage extends Creature{
             + ")"
         );
     }
-    
-    public void combattre(Creature creature) {
-        if (1 == this.getPos().distance(creature.getPos())) {
-            System.out.println("Attaque au corps à corps");
-            Random dice = new Random();
-            if (this.getPourcentageAtt() <= dice.nextInt(100)) {
-                if (dice.nextInt(100) > creature.getPourcentagePar()) {
-                
-                } else if (this.getDegAtt() > creature.getPtPar()) { //on test si les dégats d'attaques sont supérieurs au dégats de parade sinon ça va heal
-                    creature.setPtVie(creature.getPtVie() - this.getDegAtt() + creature.getPtPar());
-                }
-            }
-        } else {
-            System.out.println("Cette unité est trop loin pour être attaquée !");
-        }
-    }
 }

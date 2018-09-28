@@ -86,7 +86,7 @@ public class Mage extends Personnage {
            System.out.println("Je peux toucher avec mes sorts !");
            if (1 <= this.getPtMana()) {
                this.setPtMana(this.getPtMana() - 1);
-               if (this.getPourcentageMag() <= dice.nextInt(100)) {
+               if (this.getPourcentageMag() <= dice.nextInt(100) + 1) {
                     creature.setPtVie(creature.getPtVie() - this.getDegMag());
                 }
            } else {
