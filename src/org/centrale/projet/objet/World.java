@@ -106,5 +106,4 @@ public class World {
         }
         
     }
-    List<String> l = new ArrayList<>();
 }   

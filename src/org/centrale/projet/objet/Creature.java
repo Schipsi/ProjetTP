@@ -12,6 +12,16 @@ import java.util.Random;
  * @author grego
  */
 public class Creature {
+    
+    /**
+     * Définie tous les attributs des creatures
+     * ptVie Points de Vie actuelles de la creature
+     * ptPar Points de Parades que possède la créature
+     * pourcentageAtt pourcentage de chance de réussir son attaque
+     * pourcentagePar pourcentage de chance de contrer une attaque réussi
+     * degAtt degat infligé à l'adversaire dans le cas d'une attaque réussi
+     * pos position actuelle en 2 dimensions de la creature 
+     */
     protected int ptVie;
     protected int ptPar;
     protected int pourcentageAtt;
@@ -19,6 +29,15 @@ public class Creature {
     protected int degAtt;
     protected Point2D pos;
     
+    
+     /**
+      * méthode constructeur de la classe Creature prenant en compte les paramètres suivants 
+      * @param ptVie
+      * @param pourcentageAtt
+      * @param pourcentagePar
+      * @param degAtt
+      * @param pos 
+      */
     public Creature(int ptVie, int pourcentageAtt, int pourcentagePar, int degAtt, Point2D pos) {
         this.ptVie = ptVie;
         this.pourcentageAtt = pourcentageAtt;
@@ -26,10 +45,17 @@ public class Creature {
         this.degAtt = degAtt;
         this.pos = new Point2D(pos.getX(), pos.getY());
     }
-
+   
+    /**
+     * méthode constructeur de la classe Creature sans paramètres
+     */
     public Creature() {
     }
-
+    
+    /**
+     * méthode constructeur faisant une copie d'une autre creature
+     * @param m creature 
+     */
     public Creature(Creature m) {
         this.ptVie = m.ptVie;
         this.pourcentageAtt = m.pourcentageAtt;
@@ -87,7 +113,9 @@ public class Creature {
         this.pos = pos;
     }
     
-    
+    /**
+     * Méthode permettant le déplacement d'une créature de manière aléatoire sur une des cases adjacentes sans prendre en compte les positions déjà prises
+     */
     public void deplace() {
         int x = 0;
         int y = 0;
@@ -101,6 +129,10 @@ public class Creature {
     this.setPos(new Point2D(x+this.getPos().getX(),y+this.getPos().getY()));
     }
     
+    /**
+     * Méthode de combat au corps à corps commun à la plupart des créatures 
+     * @param creature 
+     */
     public void combattre(Creature creature) {
         if (1 == this.getPos().distance(creature.getPos())) {
             System.out.println("Attaque au corps à corps");

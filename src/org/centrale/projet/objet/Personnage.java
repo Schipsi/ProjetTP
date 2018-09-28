@@ -13,7 +13,14 @@ import java.util.Random;
  */
 abstract class Personnage extends Creature{
 
-    //création des attributs de la classe abstraite parente
+    //création des attributs de la classe abstraite Personnage 
+    /**
+     * nom nom du personnage 
+     * ptMana points de mana du personnage (0) pour la plupart des classes
+     * pourcentageMag pourcentage de chance de réussir une attaque magique
+     * pourcentageResistMag pourcentage de chance de parer une attaque magique
+     * distAttMax distance d'attaque maximale
+     */
     protected String nom;
     protected int ptMana;
     protected int pourcentageMag;
@@ -22,6 +29,20 @@ abstract class Personnage extends Creature{
     protected int distAttMax;
 
     //création des méthodes constructeurs
+    /**
+     * Méthode constructeur de la classe Personnage prenant en compte les paramètres suivants
+     * @param nom
+     * @param ptVie
+     * @param ptMana
+     * @param pourcentageAtt
+     * @param pourcentagePar
+     * @param pourcentageMag
+     * @param pourcentageResistMag
+     * @param degAtt
+     * @param degMag
+     * @param distAttMax
+     * @param pos 
+     */
     public Personnage(
             String nom,
             int ptVie,
@@ -47,7 +68,11 @@ abstract class Personnage extends Creature{
         this.distAttMax = distAttMax;
         this.pos = new Point2D(pos.getX(), pos.getY());
     }
-
+    
+    /**
+     * Méthode Constructeur faisant la copie d'un personnage déjà existant
+     * @param p Personnage
+     */
     public Personnage(Personnage p) {
         this.nom = p.nom;
         this.ptVie = p.ptVie;
@@ -62,7 +87,10 @@ abstract class Personnage extends Creature{
         this.pos.setX(p.pos.getX());
         this.pos.setY(p.pos.getY());
     }
-
+    
+    /**
+     * Constructeur de personnage ne prenant pas de paramètres et retournant un personnage null
+     */
     public Personnage() {
     }
 
@@ -115,6 +143,9 @@ abstract class Personnage extends Creature{
         this.distAttMax = distAttMax;
     }
 
+    /**
+     * Méthode faisant l'affichage des attributs du personnage 
+     */
     public void affiche() {
         System.out.println(
             "Je suis un personnage, je possède "
@@ -134,6 +165,11 @@ abstract class Personnage extends Creature{
             + ")"
         );
     }
+    
+    /**
+     * Méthode faisant l'affichage d'un personnage en donnant sa classe
+     * @param classe nom de la classe du personnage
+     */
     public void affiche(String classe) {
         System.out.println(
             "Je suis un "+classe+", je possède "
