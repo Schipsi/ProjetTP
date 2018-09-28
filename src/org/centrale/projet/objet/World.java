@@ -24,7 +24,7 @@ public class World {
     Loup wolfie = new Loup(100, 5, 100, 30, 5, new Point2D());
     Archer guillaumeT = new Archer(robin);
     Guerrier grosBill = new Guerrier("grosBill", 99, 20, 0 , 90, 80, 5, 50, 0, 0, 1, new Point2D());
-    Mage merlin= new Mage("merlin", 50, 10, 100, 40, 20, 80, 70, 1, 10, 3, new Point2D());
+    Mage merlin= new Mage("merlin", 50, 10, 100, 40, 20, 80, 70, 15, 10, 15, new Point2D());
     //définition de la taille max du monde 
     private final int TAILLEMAX = 100;
 
@@ -44,8 +44,8 @@ public class World {
         creaList.add(guillaumeT);
         creeMondeAlea(creaList);
         peon.affiche();
-        peon.setPos(new Point2D(guillaumeT.getPos().getX()+2, wolfie.getPos().getY()));
-        guillaumeT.combattre(peon);
+        peon.setPos(new Point2D(merlin.getPos().getX()+2, merlin.getPos().getY()));
+        merlin.combattre(peon);
         peon.affiche();
     }
 
