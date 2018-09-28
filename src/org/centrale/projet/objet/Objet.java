@@ -11,4 +11,42 @@ package org.centrale.projet.objet;
  */
 public class Objet {
     
+    /**
+     * Définie tous les attributs des objets
+     * pos position actuelle en 2 dimensions de l'objet 
+     */
+    protected Point2D pos;
+    
+    /**
+     * méthode constructeur de la classe Objet prenant en compte les paramètres suivants 
+     * @param pos 
+     */
+    public Objet(
+        Point2D pos
+    ) {
+        this.pos = new Point2D(pos.getX(), pos.getY());
+    }
+    
+    /**
+     * méthode constructeur faisant une copie d'un autre objet
+     * @param o Objet 
+     */
+    public Objet(Objet o) {
+        this.pos = new Point2D(o.pos.getX(), o.pos.getY());
+    }
+    
+    /**
+     * méthode constructeur de la classe Creature sans paramètres
+     */
+    public Objet() {
+        this.pos = new Point2D();
+    }
+
+    public Point2D getPos() {
+        return pos;
+    }
+
+    public void setPos(Point2D pos) {
+        this.pos = pos;
+    }
 }

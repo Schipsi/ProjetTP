@@ -30,15 +30,15 @@ public class Creature {
     protected Point2D pos;
     
     
-     /**
-      * méthode constructeur de la classe Creature prenant en compte les paramètres suivants 
-      * @param ptVie
-      * @param ptPar
-      * @param pourcentageAtt
-      * @param pourcentagePar
-      * @param degAtt
-      * @param pos 
-      */
+    /**
+     * méthode constructeur de la classe Creature prenant en compte les paramètres suivants 
+     * @param ptVie
+     * @param ptPar
+     * @param pourcentageAtt
+     * @param pourcentagePar
+     * @param degAtt
+     * @param pos 
+     */
     public Creature(
         int ptVie, 
         int ptPar, 
