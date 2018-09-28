@@ -13,6 +13,21 @@ import java.util.Random;
  */
 public class Mage extends Personnage {
     
+    /**
+     * Méthode Constructeur de la classe Mage prenant en compte les attributs suivants
+     * @param nom
+     * @param ptVie
+     * @param ptMana
+     * @param pourcentageAtt
+     * @param pourcentagePar
+     * @param pourcentageMag
+     * @param pourcentageResistMag
+     * @param degAtt
+     * @param degMag
+     * @param distAttMax
+     * @param pos
+     * @param nbf 
+     */
     public Mage(
             String nom,
             int ptVie,
@@ -42,17 +57,27 @@ public class Mage extends Personnage {
             pos
         );
     }
-
+    
+    /**
+     * Méthode Constructeur copie de la classe Mage faisant une copie d'une instance de mage déjà existante
+     * @param m 
+     */
     public Mage(Mage m) {
         super(
             (Personnage)m
         );
     }
-
+    
+    /**
+     * Méthode Constructeur vide de la classe Mage
+     */
     public Mage() {
         super();
     }
     
+    /**
+     * Méthode affiche permettant d'afficher les attributs d'une instance de mage
+     */
     public void affiche() {
         System.out.println(
             "Je suis un mage, je possède "
@@ -73,6 +98,10 @@ public class Mage extends Personnage {
         );
     }
     
+    /**
+     * Override de la méthode combattre défini dans la classe Creature, car le mage ne se bat pas au corps à corps et se bat avec de la magie
+     * @param creature 
+     */
     @Override
     public void combattre(Creature creature) {
        Random dice = new Random();
