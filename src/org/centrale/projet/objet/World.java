@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.Random;
 
 /**
@@ -18,7 +19,7 @@ import java.util.Random;
  */
 public class World {
     //définition de la taille max du monde 
-    private final int TAILLEMAX = 100000;
+    private final int TAILLEMAX = 5000;
 
     /**
      * Définition de la Méthode Constructeur de la classe World qui sert plus ici à afficher nos résultats
@@ -33,7 +34,7 @@ public class World {
         int nbLapin = seed.nextInt(2);
         int nbLoup = 1000000;
         
-        List<Creature> creatureList= new LinkedList<>();
+        List<Creature> creatureList= new ArrayList<>();
         /*for (int i = 0; i < nbArcher; i++) {
             creatureList.add(new Archer());
         }
@@ -55,25 +56,29 @@ public class World {
         }
         
         creeMondeAlea(creatureList);
+        
+        //test de la vitesse de calcul du barycentre 
+        //test pour une boucle basé sur les indices
         long debutN = System.nanoTime();
-        double baryX;
-        double baryY;
-        Point2D bary = new Point2D(0,0);
+        double baryX = 0;
+        double baryY = 0;
         for(Creature c: creatureList ){
-            bary.setX(bary.getX()+c.getPos().getX());
-            bary.setY(bary.getY()+c.getPos().getY());
+            baryX += (double)c.pos.getX();
+            baryY += (double)c.pos.getY();
         } 
-        baryX= (double)bary.getX()/creatureList.size();
-        baryY= (double)bary.getY()/creatureList.size();
+        baryX= baryX/creatureList.size();
+        baryY= baryY/creatureList.size();
         System.out.println("le barycentre des creatures se trouve en : ("+baryX+", "+baryY+")");
         long finN = System.nanoTime();
         System.out.println("Le temps écoulé pour le calcul du barycentre est de : "+ (finN-debutN)+" nanosecondes");
         
+        
+        //Test pour une boucle utilisant les itérateurs
         long debut2N = System.nanoTime();
-        double bary2X = (double)creatureList.get(1).getPos().getX();
-        double bary2Y =  (double)creatureList.get(1).getPos().getY();
+        double bary2X = 0;
+        double bary2Y =  0;
         Iterator<Creature> listItCrea = creatureList.iterator();
-        int i= 1;
+        int i= 0;
         while(listItCrea.hasNext()){
             i++;
             Creature c = listItCrea.next();
