@@ -7,6 +7,8 @@ package org.centrale.projet.objet;
 
 
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
@@ -16,12 +18,11 @@ import java.util.Random;
  */
 public class World {
     //définition de la taille max du monde 
-    private final int TAILLEMAX = 50;
+    private final int TAILLEMAX = 100000;
 
     /**
      * Définition de la Méthode Constructeur de la classe World qui sert plus ici à afficher nos résultats
      */
-<<<<<<< HEAD
     public World() {  
         // définition du nombre de créatures présentes 
         Random seed = new Random();
@@ -30,35 +31,9 @@ public class World {
         int nbMage = seed.nextInt(2);
         int nbPaysan = seed.nextInt(2);
         int nbLapin = seed.nextInt(2);
-        int nbLoup = 100;
-=======
-    public World() {
-        guillaumeT.setNom("guillaumeT");
-        List<Creature> creaList = new ArrayList<>();
-        creaList.add(peon);
-        creaList.add(robin);
-        creaList.add(bugs1);
-        creaList.add(bugs2);
-        creaList.add(wolfie);
-        creaList.add(grosBill);
-        creaList.add(merlin);
-        creaList.add(guillaumeT);
-        creeMondeAlea(creaList);
-        peon.affiche();
-        peon.setPos(new Point2D(merlin.getPos().getX()+3, merlin.getPos().getY()));
-        merlin.combattre(peon);
-        peon.affiche();
-    }
-
-    /**
-     * Méthode creeMondeAlea créant un positionnant des personnages bien défini au préalable, utilisée dans le tp1
-     */
-    public void creeMondeAlea() {
-
-        Random generateurAleatoire = new Random();
->>>>>>> small change combattre
+        int nbLoup = 1000000;
         
-        List<Creature> creatureList= new ArrayList<>();
+        List<Creature> creatureList= new LinkedList<>();
         /*for (int i = 0; i < nbArcher; i++) {
             creatureList.add(new Archer());
         }
@@ -80,6 +55,36 @@ public class World {
         }
         
         creeMondeAlea(creatureList);
+        long debutN = System.nanoTime();
+        double baryX;
+        double baryY;
+        Point2D bary = new Point2D(0,0);
+        for(Creature c: creatureList ){
+            bary.setX(bary.getX()+c.getPos().getX());
+            bary.setY(bary.getY()+c.getPos().getY());
+        } 
+        baryX= (double)bary.getX()/creatureList.size();
+        baryY= (double)bary.getY()/creatureList.size();
+        System.out.println("le barycentre des creatures se trouve en : ("+baryX+", "+baryY+")");
+        long finN = System.nanoTime();
+        System.out.println("Le temps écoulé pour le calcul du barycentre est de : "+ (finN-debutN)+" nanosecondes");
+        
+        long debut2N = System.nanoTime();
+        double bary2X = (double)creatureList.get(1).getPos().getX();
+        double bary2Y =  (double)creatureList.get(1).getPos().getY();
+        Iterator<Creature> listItCrea = creatureList.iterator();
+        int i= 1;
+        while(listItCrea.hasNext()){
+            i++;
+            Creature c = listItCrea.next();
+            bary2X = (double)c.getPos().getX() + bary2X;
+            bary2Y = (double)c.getPos().getY() + bary2Y;
+        } 
+        bary2X= bary2X/i;
+        bary2Y= bary2Y/i;
+        System.out.println("le barycentre des creatures se trouve en : ("+bary2X+", "+bary2Y+")");
+        long fin2N = System.nanoTime();
+        System.out.println("Le temps écoulé pour le calcul du barycentre est de : "+ (fin2N-debut2N)+" nanosecondes");
     }
     
     /**
@@ -100,16 +105,12 @@ public class World {
                     list2Points.add(c.pos);
                 }
                 else {
+                    verify=true;
                     for(Point2D p: list2Points){
-                        if(0 == c.pos.distance(p)) {// on regarde si le point n'est pas sur un emplacement déjà pris
+                        if(3 > c.pos.distance(p)) {// on regarde si le point n'est pas sur un emplacement déjà pris
                              verify=false;
                              break;
                         }
-                        else{
-                            if(5 >= c.pos.distance(p)){//on regarde si un autre point est à moins de 5 cases de distances à part si c'est le premier
-                                verify=true;
-                            }
-                        }  
                     }
                 } 
             }
