@@ -21,6 +21,7 @@ public class World {
     /**
      * Définition de la Méthode Constructeur de la classe World qui sert plus ici à afficher nos résultats
      */
+<<<<<<< HEAD
     public World() {  
         // définition du nombre de créatures présentes 
         Random seed = new Random();
@@ -30,6 +31,32 @@ public class World {
         int nbPaysan = seed.nextInt(2);
         int nbLapin = seed.nextInt(2);
         int nbLoup = 100;
+=======
+    public World() {
+        guillaumeT.setNom("guillaumeT");
+        List<Creature> creaList = new ArrayList<>();
+        creaList.add(peon);
+        creaList.add(robin);
+        creaList.add(bugs1);
+        creaList.add(bugs2);
+        creaList.add(wolfie);
+        creaList.add(grosBill);
+        creaList.add(merlin);
+        creaList.add(guillaumeT);
+        creeMondeAlea(creaList);
+        peon.affiche();
+        peon.setPos(new Point2D(merlin.getPos().getX()+3, merlin.getPos().getY()));
+        merlin.combattre(peon);
+        peon.affiche();
+    }
+
+    /**
+     * Méthode creeMondeAlea créant un positionnant des personnages bien défini au préalable, utilisée dans le tp1
+     */
+    public void creeMondeAlea() {
+
+        Random generateurAleatoire = new Random();
+>>>>>>> small change combattre
         
         List<Creature> creatureList= new ArrayList<>();
         /*for (int i = 0; i < nbArcher; i++) {

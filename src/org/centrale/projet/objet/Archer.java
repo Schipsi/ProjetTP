@@ -126,14 +126,18 @@ public class Archer extends Personnage {
      * @param creature 
      */
     public void combattre(Creature creature) {
+        System.out.println( this.getNom()+" qui est un "+this.getClass().getSimpleName()+" veut attaquer un " + creature.getClass().getSimpleName());
         Random dice = new Random();
         if (1 == this.getPos().distance(creature.getPos())) {
             System.out.println("Attaque au corps à corps");
             if (this.getPourcentageAtt() <= dice.nextInt(100)) {
+                System.out.println(this.getNom() +" réussi son jet d'attaque ");
                 if (dice.nextInt(100) > creature.getPourcentagePar()) {
-                
+                     System.out.println("Le "+creature.getClass().getSimpleName()+" réussi à parer ");
                 } else if (this.getDegAtt() > creature.getPtPar()) { //on test si les dégats d'attaques sont supérieurs au dégats de parade sinon ça va heal
                     creature.setPtVie(creature.getPtVie() - this.getDegAtt() + creature.getPtPar());
+                    System.out.println("Le "+creature.getClass().getSimpleName()+" s'est pris "+ (this.getDegAtt() - creature.getPtPar())+" dégats");
+                    System.out.println("Il lui reste "+creature.getPtVie()+" points de vie.");
                 }
             }
         } else if (this.getDistAttMax() >= this.getPos().distance(creature.getPos())) {
@@ -141,10 +145,16 @@ public class Archer extends Personnage {
             if (1 <= this.getNbFleches()) {
                 this.setNbFleches(this.getNbFleches() - 1);
                 if (this.getPourcentageAtt() >= dice.nextInt(100)) {
-                    System.out.println("J'ai réussi mon jet d'attaque");
+                    System.out.println(this.getNom() +" réussi son jet d'attaque ");
                     creature.setPtVie(creature.getPtVie() - this.getDegAtt());
+                    System.out.println("Le "+creature.getClass().getSimpleName()+" s'est pris "+ (this.getDegAtt() - creature.getPtPar())+" dégats");
+                    System.out.println("Il lui reste "+creature.getPtVie()+" points de vie.");
                 }
-            } else {
+                else{
+                    System.out.println(this.getNom() +" rate son jet d'attaque ");
+                }
+            } 
+            else {
                 System.out.println("Je n'ai plus de flêches...");
             }
         } else {

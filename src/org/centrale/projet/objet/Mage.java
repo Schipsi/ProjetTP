@@ -105,15 +105,22 @@ public class Mage extends Personnage {
     @Override
     public void combattre(Creature creature) {
        Random dice = new Random();
+       System.out.println( this.getNom()+" qui est un "+this.getClass().getSimpleName()+" veut attaquer un " + creature.getClass().getSimpleName());
        if (this.getDistAttMax() >= this.getPos().distance(creature.getPos())) {
            System.out.println("Je peux toucher avec mes sorts !");
            if (1 <= this.getPtMana()) {
                this.setPtMana(this.getPtMana() - 1);
                if (this.getPourcentageMag() >= dice.nextInt(100) + 1) {
-                  System.out.println("J'ai réussi mon jet d'attaque! ");
+                  System.out.println(this.getNom() +" réussi son jet d'attaque ");
                   creature.setPtVie(creature.getPtVie() - this.getDegMag());
+                  System.out.println("Le "+creature.getClass().getSimpleName()+" s'est pris "+ (this.getDegAtt() - creature.getPtPar())+" dégats");
+                  System.out.println("Il lui reste "+creature.getPtVie()+" points de vie.");
                 }
-           } else {
+               else{
+                   System.out.println(this.getNom() +" rate son jet d'attaque ");
+               }
+           } 
+           else {
                System.out.println("Je n'ai pas assez de mana pour lancer un sort...");
            }
        }

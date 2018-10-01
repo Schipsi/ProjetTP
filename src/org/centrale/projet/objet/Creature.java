@@ -11,7 +11,7 @@ import java.util.Random;
  *
  * @author grego
  */
-public class Creature {
+abstract class Creature {
     
     /**
      * Définie tous les attributs des creatures
@@ -156,20 +156,22 @@ public class Creature {
      * @param creature 
      */
     public void combattre(Creature creature) {
+        System.out.println( "Un "+this.getClass().getSimpleName()+" veut attaquer un " + creature.getClass().getSimpleName());
         if (1 == this.getPos().distance(creature.getPos())) {
             System.out.println("Attaque au corps à corps");
             Random dice = new Random();
             if (this.getPourcentageAtt() >= dice.nextInt(100) + 1 ) {
-                System.out.println("j'ai réussi mon jet d'attaque ");
+                System.out.println("Le "+this.getClass().getSimpleName() +" réussi son jet d'attaque ");
                 if (dice.nextInt(100) + 1 < creature.getPourcentagePar()) {
-                    System.out.println("il a réussi a paré ");
+                    System.out.println("Le "+creature.getClass().getSimpleName()+" réussi à parer ");
                 } else if (this.getDegAtt() > creature.getPtPar()) { //on test si les dégats d'attaques sont supérieurs au dégats de parade sinon ça va heal
                     creature.setPtVie(creature.getPtVie() - this.getDegAtt() + creature.getPtPar());
-                    System.out.println("il s'est pris "+ (this.getDegAtt() - creature.getPtPar())+" dégats");
+                    System.out.println("Le "+creature.getClass().getSimpleName()+" s'est pris "+ (this.getDegAtt() - creature.getPtPar())+" dégats");
+                    System.out.println("Il lui reste "+creature.getPtVie()+" points de vie.");
                 }
             }
             else {
-                System.out.println("j'ai raté mon jet d'attaque ");
+                System.out.println("Le "+this.getClass().getSimpleName() +"rate son jet d'attaque ");
             }
         }
         else {
