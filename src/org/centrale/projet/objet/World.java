@@ -15,110 +15,44 @@ import java.util.Random;
  * @author grego
  */
 public class World {
-
-    //création des personnages du monde 
-    Archer robin = new Archer("robin", 99, 10, 15, 90, 70, 20, 40, 15, 15, 15, new Point2D(), 16);
-    Paysan peon = new Paysan("peon", 20, 1, 16, 50, 10, 0, 0, 2, 1, 1, new Point2D());
-    Lapin bugs1 = new Lapin(6, 5, 20, 10, 1, new Point2D());
-    Lapin bugs2 = new Lapin(6, 5, 20, 10, 1, new Point2D());
-    Loup wolfie = new Loup(100, 5, 100, 30, 5, new Point2D());
-    Archer guillaumeT = new Archer(robin);
-    Guerrier grosBill = new Guerrier("grosBill", 99, 20, 0 , 90, 80, 5, 50, 0, 0, 1, new Point2D());
-    Mage merlin= new Mage("merlin", 50, 10, 100, 40, 20, 80, 70, 15, 10, 15, new Point2D());
     //définition de la taille max du monde 
-    private final int TAILLEMAX = 100;
+    private final int TAILLEMAX = 50;
 
     /**
      * Définition de la Méthode Constructeur de la classe World qui sert plus ici à afficher nos résultats
      */
-    public World() {
-        guillaumeT.setNom("guillaumeT");
-        List<Creature> creaList = new ArrayList<>();
-        creaList.add(peon);
-        creaList.add(robin);
-        creaList.add(bugs1);
-        creaList.add(bugs2);
-        creaList.add(wolfie);
-        creaList.add(grosBill);
-        creaList.add(merlin);
-        creaList.add(guillaumeT);
-        creeMondeAlea(creaList);
-        peon.affiche();
-        peon.setPos(new Point2D(merlin.getPos().getX()+2, merlin.getPos().getY()));
-        merlin.combattre(peon);
-        peon.affiche();
-    }
-
-    /**
-     *  Méthode creeMondeAlea créant un positionnant des personnages bien défini au préalable, utilisée dans le tp1
-     */
-    public void creeMondeAlea() {
-
-        Random generateurAleatoire = new Random();
+    public World() {  
+        // définition du nombre de créatures présentes 
+        Random seed = new Random();
+        int nbArcher = seed.nextInt(2);
+        int nbGuerrier = seed.nextInt(2);
+        int nbMage = seed.nextInt(2);
+        int nbPaysan = seed.nextInt(2);
+        int nbLapin = seed.nextInt(2);
+        int nbLoup = 100;
         
-        //On positionne l'archer robin
-        robin.setPos(new Point2D(generateurAleatoire.nextInt(TAILLEMAX), generateurAleatoire.nextInt(TAILLEMAX)));
-        
-        boolean verifyP = false;
-
-        //on positionne le paysan peon
-        while (!verifyP) {
-            peon.setPos(new Point2D((generateurAleatoire.nextInt(10) - 5 + robin.getPos().getX()), (generateurAleatoire.nextInt(10) - 5 + robin.getPos().getY())));// place le paysan a 5 moins de 5 de distance de robin
-            if (peon.getPos().getX() <= TAILLEMAX //vérifie que le paysan  est dans le monde et pas en dehors
-                    && peon.getPos().getY() <= TAILLEMAX
-                    && peon.getPos().getX() >= 0
-                    && peon.getPos().getY() >= 0) {
-                if (peon.getPos().getX() == robin.getPos().getX() // vérifie les collisions avec robin
-                        && peon.getPos().getY() == robin.getPos().getY()) {
-                    verifyP = false;
-                } else {
-                    verifyP = true;
-                }
-            }
+        List<Creature> creatureList= new ArrayList<>();
+        /*for (int i = 0; i < nbArcher; i++) {
+            creatureList.add(new Archer());
         }
-        boolean verifyL = false;
-
-        //on positionne le lapin bugs
-        while (!verifyL) {
-            bugs.setPos(new Point2D((generateurAleatoire.nextInt(10) - 5 + robin.getPos().getX()), (generateurAleatoire.nextInt(10) - 5 + robin.getPos().getY()))); // place le lapin à moins de 5 de distances de robin
-            if (bugs.getPos().getX() <= TAILLEMAX // vérifie que le lapin est dans le monde et pas en dehors
-                    && bugs.getPos().getY() <= TAILLEMAX
-                    && bugs.getPos().getX() >= 0
-                    && bugs.getPos().getY() >= 0) {
-                if ((bugs.getPos().getX() == robin.getPos().getX()//vérifie les collisions avec robin
-                        && 
-                        bugs.getPos().getY() == robin.getPos().getY())
-                        || (bugs.getPos().getX() == peon.getPos().getX()//vérifie les collisions avec peon
-                        && 
-                        bugs.getPos().getY() == peon.getPos().getY())) {
-                    verifyL = false;
-                } else {
-                    if (Math.abs(bugs.getPos().getX() - peon.getPos().getX()) < 5 //vérifie que la distance avec peon soit à moins de 5
-                            && Math.abs(bugs.getPos().getY() - peon.getPos().getY()) < 5) {
-                        verifyL = true;
-                    }
-                }
-            }
+        for (int i = 0; i < nbGuerrier; i++) {
+            creatureList.add(new Guerrier());
         }
-        robin.affiche();
-        peon.affiche();
-        bugs.affiche();
-        Archer guillaumeT = new Archer();
-        guillaumeT.affiche();
+        for (int i = 0; i < nbMage; i++) {
+            creatureList.add(new Mage());
+        }
+        for (int i = 0; i < nbPaysan; i++) {
+            creatureList.add(new Paysan());
+        }
+        for (int i = 0; i < nbLapin; i++) {
+            creatureList.add(new Lapin());
+        }
+        */
+        for (int i = 0; i < nbLoup; i++) {
+            creatureList.add(new Loup());
+        }
         
-        robin.deplace();
-        peon.deplace();
-        bugs.deplace();
-        
-        robin.affiche();
-        peon.affiche();
-        bugs.affiche();
-        guillaumeT.affiche();
-        
-
-        
-        
-        
+        creeMondeAlea(creatureList);
     }
     
     /**
@@ -131,7 +65,7 @@ public class World {
         Random generateurAleatoire = new Random();
         boolean verify = false;
         for(Creature c : creature){
-            verify=false;
+            verify = false;
             while(!verify){
                 c.setPos(new Point2D(generateurAleatoire.nextInt(TAILLEMAX), generateurAleatoire.nextInt(TAILLEMAX)));
                 if(list2Points.isEmpty()){ //cas particulier pour le premier élément qui ne doit pas vérifier les conditions
@@ -154,7 +88,9 @@ public class World {
             }
             list2Points.add(c.pos);
         }
-        
+        for (Creature c : creature) {
+            c.pos.affiche();
+        }
     }
     
     public void afficheWorld(){

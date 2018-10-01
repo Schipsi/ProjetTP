@@ -145,6 +145,13 @@ public class Creature {
     }
     
     /**
+     * Méthode pour afficher un personnage de façon simple
+     */
+    public void affiche() {
+        System.out.println("Je suis une simple créature.");
+    }
+    
+    /**
      * Méthode de combat au corps à corps commun à la plupart des créatures 
      * @param creature 
      */

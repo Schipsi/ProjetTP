@@ -13,5 +13,4 @@ public class TestSeance2 {
     public static void main(String[] args) {
         World woEcn = new World();
     }
-    
 }
