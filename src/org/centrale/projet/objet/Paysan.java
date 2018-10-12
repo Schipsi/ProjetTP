@@ -5,6 +5,8 @@
  */
 package org.centrale.projet.objet;
 
+import java.util.List;
+
 /**
  *
  * @author grego
@@ -28,6 +30,7 @@ public class Paysan extends Personnage {
      * @param distAttMax
      * @param pos 
      * @param jouable
+     * @param buffss
      */
     public Paysan(
             String nom,
@@ -42,7 +45,9 @@ public class Paysan extends Personnage {
             int degMag,
             int distAttMax,
             Point2D pos,
-            boolean jouable) {
+            boolean jouable,
+            List<Nourriture> buffs
+        ) {
         super(
             nom,
             ptVie,
@@ -56,7 +61,8 @@ public class Paysan extends Personnage {
             degMag,
             distAttMax,
             pos,
-            jouable);
+            jouable,
+            buffs);
     }
 
     /**

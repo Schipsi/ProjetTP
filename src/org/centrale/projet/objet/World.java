@@ -135,65 +135,83 @@ public class World {
     }
     
     public Creature getCrea(Point2D pos){
-        for(ElementDeJeu e: this.elementList)
+        for(ElementDeJeu e: this.elementList){
             if(pos.distance(e.getPos()) == 0 && e instanceof Creature){
                 return ((Creature) e);
             }
-        return null;
         }
+        return null;
+    }
     
     public List<Objet> getObj(Point2D pos){
         List<Objet> objetList= new ArrayList<>();
-        for(ElementDeJeu e: this.elementList)
+        for(ElementDeJeu e: this.elementList){
             if(pos.distance(e.getPos()) == 0 && e instanceof Objet){
                 objetList.add((Objet) e);
             }
-        return objetList;
         }
+        return objetList;
+    }
     
-    public void tourDeJeu(){
+    public void jouerPerso(Personnage e){
         Scanner sc = new Scanner(System.in);
         boolean chosen = false;
         boolean chosen2 = false;
+        e.affiche();
+        this.afficheWorld();
+        while(!chosen){
+            System.out.println("Que voulez vous faire ? "
+                + "\n 1- combattre "
+                + "\n 2- se déplacer");
+            String choix = sc.nextLine();
+            if(choix.equals("1")){
+                while(!chosen2){
+                    System.out.println("Désignez la position de la créature que vous voulez attaquer : \n x = ?");
+                    sc.nextLine();
+                    int x = sc.nextInt();
+                    System.out.println("y = ?");
+                    sc.nextLine();
+                    int y = sc.nextInt();
+                    Point2D ennemi = new Point2D(x,y);
+                    Creature creaEnnemi = getCrea(ennemi);
+                    if(creaEnnemi!= null && e.getPos().distance(ennemi)!=0){// on regarde qu'il y ait bien une creature sur cette position et qu'elle est différente du personnage
+                        ((Personnage) e).combattre(creaEnnemi);
+                        chosen2=true;
+                        chosen=true;
+                    }
+                    else{
+                        System.out.println(" Il n'y a aucune créature en cette position.");
+                    }
+                }
+            }
+            else if(choix.equals("2")){
+                ((Personnage) e).deplacer();
+                chosen=true;
+            }
+            else{
+                System.out.println("Veuillez choisir le chiffre 1(combattre) ou 2(se deplacer) ");
+            }
+        }  
+    }
+    
+    
+    public void jouerMonstre(Monstre m){
+        
+    }
+    
+    
+    public void tourDeJeu(){
         for(ElementDeJeu e : this.elementList){
             if(e instanceof Personnage){// on regarde si notre élément de jeu est un personnage
                 if(((Personnage) e).jouable){ // on rvérifie que le personnage est jouable
-                    ((Personnage) e).affiche();
-                    this.afficheWorld();
-                    while(!chosen){
-                        System.out.println("Que voulez vous faire ? "
-                            + "\n 1- combattre "
-                            + "\n 2- se déplacer");
-                        String choix = sc.nextLine();
-                        if(choix.equals("1")){
-                            while(!chosen2){
-                                System.out.println("Désignez la position de la créature que vous voulez attaquer : \n x = ?");
-                                sc.nextLine();
-                                int x = sc.nextInt();
-                                System.out.println("y = ?");
-                                sc.nextLine();
-                                int y = sc.nextInt();
-                                Point2D ennemi = new Point2D(x,y);
-                                Creature creaEnnemi = getCrea(ennemi);
-                                if(creaEnnemi!= null && e.getPos().distance(ennemi)!=0){// on regarde qu'il y ait bien une creature sur cette position et qu'elle est différente du personnage
-                                    ((Personnage) e).combattre(creaEnnemi);
-                                    chosen2=true;
-                                    chosen=true;
-                                }
-                                else{
-                                    System.out.println(" Il n'y a aucune créature en cette position.");
-                                }
-                            }
-                        }
-                        else if(choix.equals("2")){
-                            ((Personnage) e).deplacer();
-                            chosen=true;
-                        }
-                        else{
-                            System.out.println("Veuillez choisir le chiffre 1(combattre) ou 2(se deplacer) ");
-                        }
-                    }  
+                    this.jouerPerso((Personnage) e);
                 }
+                else{
+                    ((Creature) e).deplacer();
+                }
+            }
+            else if(e instanceof Monstre){
+                this.jouerMonstre((Monstre) m);
             }
         }
     }

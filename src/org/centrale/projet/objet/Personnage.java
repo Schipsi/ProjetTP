@@ -5,6 +5,8 @@
  */
 package org.centrale.projet.objet;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -29,6 +31,8 @@ abstract class Personnage extends Creature implements Combattant{
     protected int degMag;
     protected int distAttMax;
     protected boolean jouable;
+    protected List<Nourriture> buffs;
+    
     //création des méthodes constructeurs
     /**
      * Méthode constructeur de la classe Personnage prenant en compte les paramètres suivants
@@ -45,6 +49,7 @@ abstract class Personnage extends Creature implements Combattant{
      * @param distAttMax distance d'attaque maximale
      * @param pos 
      * @param jouable le personnage est un personnage joué par un joueur ou non
+     * @param buffs bonus ou malus donné par la nourriture consommée
      */
     public Personnage(
             String nom,
@@ -59,7 +64,8 @@ abstract class Personnage extends Creature implements Combattant{
             int degMag,
             int distAttMax,
             Point2D pos,
-            boolean jouable
+            boolean jouable,
+            List<Nourriture> buffs
     ) {
         this.nom = nom;
         this.ptVie = ptVie;
@@ -74,6 +80,9 @@ abstract class Personnage extends Creature implements Combattant{
         this.distAttMax = distAttMax;
         this.pos = new Point2D(pos.getX(), pos.getY());
         this.jouable = jouable;
+        for(Nourriture n: buffs){
+            this.buffs.add(n);
+        }
     }
     
     /**
@@ -91,6 +100,9 @@ abstract class Personnage extends Creature implements Combattant{
         this.degMag = p.degMag;
         this.distAttMax = p.distAttMax;
         this.jouable = p.jouable;
+        for(Nourriture n: p.buffs){
+            this.buffs.add(n);
+        }
     }
     
     /**
@@ -105,6 +117,7 @@ abstract class Personnage extends Creature implements Combattant{
         this.degMag = 0;
         this.distAttMax = 0;
         this.jouable= false;
+        this.buffs = new ArrayList<>();
     }
 
     //definition des accesseurs et mutateurs
@@ -249,5 +262,11 @@ abstract class Personnage extends Creature implements Combattant{
     }
     public void combattre(){
         
+    }
+    
+    public void Manger(Nourriture n){
+        if(this.getPos().distance(n.getPos())==0){
+            this.buffs.add(n);
+        }
     }
 }

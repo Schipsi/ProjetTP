@@ -5,6 +5,7 @@
  */
 package org.centrale.projet.objet;
 
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -51,6 +52,7 @@ public class Archer extends Personnage implements Combattant {
             int distAttMax,
             Point2D pos,
             boolean jouable,
+            List<Nourriture> buffs,
             int nbf
     ) {
         super(
@@ -66,7 +68,8 @@ public class Archer extends Personnage implements Combattant {
             degMag,
             distAttMax,
             pos,
-            jouable
+            jouable,
+            buffs
         );
         this.nbFleches = nbf;
     }

@@ -5,6 +5,7 @@
  */
 package org.centrale.projet.objet;
 
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -42,7 +43,8 @@ public class Mage extends Personnage implements Combattant{
             int degMag,
             int distAttMax,
             Point2D pos,
-            boolean jouable
+            boolean jouable,
+            List<Nourriture> buffs
     ) {
         super(
             nom,
@@ -57,7 +59,8 @@ public class Mage extends Personnage implements Combattant{
             degMag,
             distAttMax,
             pos,
-            jouable
+            jouable,
+            buffs
         );
     }
     
