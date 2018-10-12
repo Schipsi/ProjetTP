@@ -11,7 +11,7 @@ import java.util.Scanner;
  *
  * @author grego
  */
-abstract class Personnage extends Creature{
+abstract class Personnage extends Creature implements Combattant{
 
     //création des attributs de la classe abstraite Personnage 
     /**
@@ -20,6 +20,7 @@ abstract class Personnage extends Creature{
      * pourcentageMag pourcentage de chance de réussir une attaque magique
      * pourcentageResistMag pourcentage de chance de parer une attaque magique
      * distAttMax distance d'attaque maximale
+     * jouable le personnage est un personnage joué par un joueur ou non
      */
     protected String nom;
     protected int ptMana;
@@ -27,22 +28,23 @@ abstract class Personnage extends Creature{
     protected int pourcentageResistMag;
     protected int degMag;
     protected int distAttMax;
-
+    protected boolean jouable;
     //création des méthodes constructeurs
     /**
      * Méthode constructeur de la classe Personnage prenant en compte les paramètres suivants
-     * @param nom
+     * @param nom nom du personnage
      * @param ptVie
      * @param ptPar
-     * @param ptMana
+     * @param ptMana points de mana du personnage (0) pour la plupart des classes
      * @param pourcentageAtt
      * @param pourcentagePar
-     * @param pourcentageMag
+     * @param pourcentageMag pourcentage de chance de réussir une attaque magique
      * @param pourcentageResistMag
      * @param degAtt
      * @param degMag
-     * @param distAttMax
+     * @param distAttMax distance d'attaque maximale
      * @param pos 
+     * @param jouable le personnage est un personnage joué par un joueur ou non
      */
     public Personnage(
             String nom,
@@ -56,7 +58,8 @@ abstract class Personnage extends Creature{
             int degAtt,
             int degMag,
             int distAttMax,
-            Point2D pos
+            Point2D pos,
+            boolean jouable
     ) {
         this.nom = nom;
         this.ptVie = ptVie;
@@ -70,6 +73,7 @@ abstract class Personnage extends Creature{
         this.degMag = degMag;
         this.distAttMax = distAttMax;
         this.pos = new Point2D(pos.getX(), pos.getY());
+        this.jouable = jouable;
     }
     
     /**
@@ -86,6 +90,7 @@ abstract class Personnage extends Creature{
         this.pourcentageResistMag = p.pourcentageResistMag;
         this.degMag = p.degMag;
         this.distAttMax = p.distAttMax;
+        this.jouable = p.jouable;
     }
     
     /**
@@ -99,6 +104,7 @@ abstract class Personnage extends Creature{
         this.pourcentageResistMag = 0;
         this.degMag = 0;
         this.distAttMax = 0;
+        this.jouable= false;
     }
 
     //definition des accesseurs et mutateurs
@@ -240,5 +246,8 @@ abstract class Personnage extends Creature{
         }
         System.out.println("Votre personnage est maintenant en position ["+this.getPos().getX()+", "+this.getPos().getY()+"].");
 
+    }
+    public void combattre(){
+        
     }
 }

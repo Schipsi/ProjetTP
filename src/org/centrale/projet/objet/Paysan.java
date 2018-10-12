@@ -27,6 +27,7 @@ public class Paysan extends Personnage {
      * @param degMag
      * @param distAttMax
      * @param pos 
+     * @param jouable
      */
     public Paysan(
             String nom,
@@ -40,7 +41,8 @@ public class Paysan extends Personnage {
             int degAtt,
             int degMag,
             int distAttMax,
-            Point2D pos) {
+            Point2D pos,
+            boolean jouable) {
         super(
             nom,
             ptVie,
@@ -53,7 +55,8 @@ public class Paysan extends Personnage {
             degAtt,
             degMag,
             distAttMax,
-            pos);
+            pos,
+            jouable);
     }
 
     /**
@@ -72,11 +75,15 @@ public class Paysan extends Personnage {
         this.degMag = p.degMag;
         this.distAttMax = p.distAttMax;
         this.pos = p.pos;
+        this.jouable = p.jouable;
     }
     /**
      * Constructeur de la classe Paysan ne prenant pas d'attributs en compte
      */
     public Paysan() {
         super();
+    }
+    public void combattre(Creature c){
+        System.out.println("Crebondiou d'bonsoir j'suis qu'un péquenau, d'où tu veux que je me batte");
     }
 }

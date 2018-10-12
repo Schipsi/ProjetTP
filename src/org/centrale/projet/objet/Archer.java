@@ -34,6 +34,7 @@ public class Archer extends Personnage implements Combattant {
      * @param degMag
      * @param distAttMax
      * @param pos
+     * @param jouable
      * @param nbf 
      */
     public Archer(
@@ -49,6 +50,7 @@ public class Archer extends Personnage implements Combattant {
             int degMag,
             int distAttMax,
             Point2D pos,
+            boolean jouable,
             int nbf
     ) {
         super(
@@ -63,7 +65,8 @@ public class Archer extends Personnage implements Combattant {
             degAtt,
             degMag,
             distAttMax,
-            pos
+            pos,
+            jouable
         );
         this.nbFleches = nbf;
     }
@@ -110,7 +113,9 @@ public class Archer extends Personnage implements Combattant {
      */
     public void affiche() {
         System.out.println(
-            "Je suis un archer, je possède "
+            "Je suis un archer,  je m'appelle "
+            + this.nom
+            +" je possède "
             + this.getNbFleches()
             + " fleches, "
             + this.getPtVie()

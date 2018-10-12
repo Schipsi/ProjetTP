@@ -27,6 +27,7 @@ public class Mage extends Personnage implements Combattant{
      * @param degMag
      * @param distAttMax
      * @param pos
+     * @param jouable
      */
     public Mage(
             String nom,
@@ -40,7 +41,8 @@ public class Mage extends Personnage implements Combattant{
             int degAtt,
             int degMag,
             int distAttMax,
-            Point2D pos
+            Point2D pos,
+            boolean jouable
     ) {
         super(
             nom,
@@ -54,7 +56,8 @@ public class Mage extends Personnage implements Combattant{
             degAtt,
             degMag,
             distAttMax,
-            pos
+            pos,
+            jouable
         );
     }
     
@@ -90,7 +93,9 @@ public class Mage extends Personnage implements Combattant{
      */
     public void affiche() {
         System.out.println(
-            "Je suis un mage, je possède "
+            "Je suis un mage,  je m'appelle "
+            + this.nom
+            +" je possède "
             + this.getPtVie()
             + " points de vie et "
             + this.getPtMana()

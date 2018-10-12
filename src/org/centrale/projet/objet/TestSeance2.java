@@ -5,14 +5,20 @@
  */
 package org.centrale.projet.objet;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author grego
  */
 public class TestSeance2 {
     public static void main(String[] args) {
-        Joueur joueur = new Joueur();
-        joueur.perso.affiche();
-        joueur.perso.deplacer();
+        
+        World monde =new World();
+        monde.tourDeJeu();
+        //joueur.perso.affiche();
+        //joueur.perso.deplacer();
+        
     }
 }
