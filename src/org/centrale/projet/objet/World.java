@@ -6,6 +6,7 @@
 package org.centrale.projet.objet;
 
 
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -168,6 +169,52 @@ public class World {
         return objetList;
     }
     
+    /**
+     * Méthode cerner dont le but est de savoir si une creature est cernée par d'autre créature, dans ce cas ci la créature ne peut pas bouger
+     * pb de la méthode : est consomme beaucoup de temps de calcul
+     * @param c creature 
+     * @param elements list composée de tout les éléments de jeu
+     * @return 
+     */
+    public boolean cerner(Creature c, List<ElementDeJeu> elements){
+        int compteur =0;
+        Point2D test = new Point2D(c.getPos());
+        for(int i=-1; i<2;i++){
+             for(int j=-1; i<2;i++){
+                 test = new Point2D(c.getPos());
+                 test.translater(i, j);
+                 for(ElementDeJeu e:elements){
+                     if(test.distance(e.getPos())==0 && e instanceof Creature){
+                         compteur+=1;
+                         break;
+                     }
+                 }
+             }
+        }
+        if(compteur==9){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    /**
+     * Méthode renvoyant true si la case est occupée par une créature, false sinon 
+     * @param Creature creature caractérisée par sa position
+     * @param elements liste des éléments constituants le monde
+     * @return 
+     */
+    public boolean collision(Creature c,  List<ElementDeJeu> elements){
+        for(ElementDeJeu e:elements){
+            if(c.getPos().distance(e.getPos())==0 && e instanceof Creature)
+                return true;
+        }
+        return false;
+    }
+    /**
+     * Méthode proposant de combattre une créature ou de se déplacer sur une case où ne se trouve pas d'autres créatures, ne s'occupe pas de récupérer les potions
+     * @param e Personnage jouable
+     */
     public void jouerPerso(Personnage e){
         Scanner sc = new Scanner(System.in);
         boolean chosen = false;
@@ -196,12 +243,27 @@ public class World {
                     }
                     else{
                         System.out.println(" Il n'y a aucune créature en cette position.");
+                        System.out.println("Voulez vous vous déplacer plutot [y/n]");// Pour sortir de la boucle si on ne peut attaquer aucune créature
+                        sc.nextLine();
+                        String choix2 = sc.nextLine();
+                        if(choix2.equals("y")){
+                            choix="2";
+                            chosen2=true;
+                        }
                     }
                 }
             }
             else if(choix.equals("2")){
-                ((Personnage) e).deplacer();
-                chosen=true;
+                boolean collision = true;
+                if(!this.cerner(e, this.elementList)){
+                Personnage copie = new Guerrier();
+                    while(collision){
+                        copie.setPos(e.getPos());
+                        copie.deplacer();
+                        collision = this.collision(copie, this.elementList);
+                    }
+                    e.setPos(copie.getPos());
+                }
             }
             else{
                 System.out.println("Veuillez choisir le chiffre 1(combattre) ou 2(se deplacer) ");
@@ -211,22 +273,85 @@ public class World {
     
     
     public void jouerMonstre(Monstre m){
-        
+        if(m instanceof Loup){
+            for(ElementDeJeu e : this.elementList){
+                if(m.getPos().distance(e.getPos())==1 && e instanceof Creature){
+                    ((Loup) m).combattre((Creature) e);
+                    return ;
+                }
+            }
+        }
+        boolean collision =true;
+        if(!this.cerner(m, this.elementList)){
+            Creature copie = new Loup();
+            while(collision){
+                copie.setPos(m.getPos());
+                copie.deplacer();
+                collision = this.collision(copie, this.elementList);
+            }
+            m.setPos(copie.getPos());
+        }
     }
     
+    /**
+     * Méthode pour faire "jouer" les objets , i.e. les faire se consommer si quelqu'un se trouve dessus et faire bouger le nuage
+     * @param o objet qui peut être une potion, de la nourriture ou un nuage toxique
+     */
+    public void jouerObjet(Objet o){
+        for(ElementDeJeu e: this.elementList){
+            if(o.getPos().distance(e.getPos())==0 && e instanceof Personnage){
+                if(o instanceof Potion){//l potion est bue
+                    ((Potion)o).boire((Creature)e);
+                }
+                else if(o instanceof Nourriture){//on mange la nourriture
+                    ((Personnage)e).Manger((Nourriture)o);
+                }
+                else if(o instanceof NuageToxique){
+                    ((NuageToxique)o).combattre((Creature)e);
+                }    
+            }
+        }
+        if(o instanceof NuageToxique){
+            ((NuageToxique)o).deplacer();
+        }
+    }
     
     public void tourDeJeu(){
-        for(ElementDeJeu e : this.elementList){
+        for(ElementDeJeu e : this.elementList){//on fait jouer tout les personnages, monstres, objets
             if(e instanceof Personnage){// on regarde si notre élément de jeu est un personnage
-                if(((Personnage) e).jouable){ // on rvérifie que le personnage est jouable
+                if(((Personnage) e).jouable){ // on vérifie que le personnage est jouable
                     this.jouerPerso((Personnage) e);
-                }
-                else{
-                    ((Creature) e).deplacer();
                 }
             }
             else if(e instanceof Monstre){
                 this.jouerMonstre((Monstre) e);
+            }
+            else if(e instanceof Object){
+                this.jouerObjet((Objet)e);
+            }
+        }
+        for(ElementDeJeu e : this.elementList){//on fait le tour des buffs et des débuffs
+            if(e instanceof Personnage){
+                for(Nourriture b: ((Personnage) e).buffs){
+                    if(b.duree==b.DUREEMAX){
+                        b.effet((Personnage)e);
+                    }
+                    b.duree-=1;
+                    if(b.duree==-1){
+                        b.finEffet((Personnage)e);
+                    }
+                }
+            }
+        }
+        for(ElementDeJeu e : this.elementList){//on fait le tour des buffs et des débuffs pour supprimer ceux qui sont périmés
+            if(e instanceof Personnage){
+                Iterator<Nourriture> itr = ((Personnage)e).buffs.iterator();//comme on supprime au fur et à mesure il est plus sur de fonctionner avec des itérateurs
+                while(itr.hasNext()){
+                    Nourriture n = itr.next();
+                    if(n.duree==-1){
+                        itr.remove();
+                    }
+                }
             }
         }
     }

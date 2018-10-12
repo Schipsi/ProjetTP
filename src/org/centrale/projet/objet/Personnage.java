@@ -267,6 +267,7 @@ abstract class Personnage extends Creature implements Combattant{
     public void Manger(Nourriture n){
         if(this.getPos().distance(n.getPos())==0){
             this.buffs.add(n);
+            n.pos=null;
         }
     }
 }
