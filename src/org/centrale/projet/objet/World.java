@@ -7,10 +7,7 @@ package org.centrale.projet.objet;
 
 
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.ListIterator;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -29,35 +26,48 @@ public class World {
     public World() {  
         // définition du nombre de créatures présentes 
         Random seed = new Random();
-        int nbArcher = seed.nextInt(2);
-        int nbGuerrier = seed.nextInt(2);
-        int nbMage = seed.nextInt(2);
-        int nbPaysan = seed.nextInt(2);
-        int nbLapin = seed.nextInt(2);
-        int nbLoup = 50;
+        int nbArcher = 0;
+        int nbGuerrier = 0;
+        int nbMage = 0;
+        int nbPaysan = 0;
+        int nbLapin = 0;
+        int nbLoup = seed.nextInt(10) + 45;
+        int nbPotionSoin = 5;
+        int nbPotionMana = 5;
         
         
-        /*for (int i = 0; i < nbArcher; i++) {
-            creatureList.add(new Archer());
+        for (int i = 0; i < nbArcher; i++) {
+            elementList.add(new Archer());
         }
         for (int i = 0; i < nbGuerrier; i++) {
-            creatureList.add(new Guerrier());
+            elementList.add(new Guerrier());
         }
         for (int i = 0; i < nbMage; i++) {
-            creatureList.add(new Mage());
+            elementList.add(new Mage());
         }
         for (int i = 0; i < nbPaysan; i++) {
-            creatureList.add(new Paysan());
+            elementList.add(new Paysan());
         }
         for (int i = 0; i < nbLapin; i++) {
-            creatureList.add(new Lapin());
+            elementList.add(new Lapin());
         }
-        */
         for (int i = 0; i < nbLoup; i++) {
             elementList.add(new Loup());
         }
+        for (int i = 0; i < nbPotionSoin; i++) {
+            elementList.add(new Soin());
+        }
+        for (int i = 0; i < nbPotionMana; i++) {
+            elementList.add(new Mana());
+        }
+        
         Joueur player1 = new Joueur();
         elementList.add(player1.perso);
+        try {
+            player1.perso.pos.affiche();
+        } catch (NullPointerException e) {
+            System.out.println("Accès à un objet définit comme null !");
+        }
         
         creeMondeAlea(elementList);
         
@@ -118,7 +128,6 @@ public class World {
                     for(Point2D p: list2Points){
                         if(3 > e.getPos().distance(p)) {// on regarde si le point n'est pas sur un emplacement déjà pris
                              verify=false;
-                             break;
                         }
                     }
                 } 
@@ -134,10 +143,14 @@ public class World {
         for(int i = 0; i < TAILLEMAX; i++) {
             for(int j = 0; j < TAILLEMAX; j++) {
                 Point2D pos = new Point2D(i, j);
-                if (null != getCrea(pos) && !getObj(pos).isEmpty()) {
-                    System.out.print("x");
-                } else if (null != getCrea(pos)) {
-                    System.out.print("c");
+                if (null != getCrea(pos) && getCrea(pos) instanceof Personnage && !getObj(pos).isEmpty()) {
+                    System.out.print("q");
+                } else if (null != getCrea(pos) && getCrea(pos) instanceof Creature && !getObj(pos).isEmpty()) {
+                    System.out.print("n");
+                } else if (null != getCrea(pos) && getCrea(pos) instanceof Personnage) {
+                    System.out.print("p");
+                } else if (null != getCrea(pos) && getCrea(pos) instanceof Creature) {
+                    System.out.print("m");
                 } else if (!getObj(pos).isEmpty()) {
                     System.out.print("o");
                 } else {
