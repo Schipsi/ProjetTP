@@ -11,7 +11,7 @@ package org.centrale.projet.objet;
  */
 abstract class Nourriture extends Objet{
     
-    protected static final int DUREEMAX =5;
+    protected final int DUREEMAX =5;
     protected int duree;
     protected Point2D pos;
     
@@ -24,4 +24,11 @@ abstract class Nourriture extends Objet{
         this.duree= this.duree-1;
     }
     
+    public void effet(Personnage p){
+        
+    }
+    
+    public void finEffet(Personnage p){
+        
+    }
 }

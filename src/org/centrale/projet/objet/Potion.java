@@ -56,4 +56,8 @@ public class Potion extends Objet {
     public void setPtRegen(int ptRegen) {
         this.ptRegen = ptRegen;
     }
+    
+    public void boire(Creature c){
+        
+    }
 }
