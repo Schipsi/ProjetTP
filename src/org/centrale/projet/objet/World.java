@@ -7,6 +7,7 @@ package org.centrale.projet.objet;
 
 
 import java.lang.reflect.Method;
+import java.util.Iterator;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
