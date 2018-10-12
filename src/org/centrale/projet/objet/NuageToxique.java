@@ -34,7 +34,27 @@ public class NuageToxique extends Objet implements Combattant, Deplacable{
     }
     
     public void combattre(Creature c){
-        
-    }
-    
+        if(this.getPos().distance(c.getPos())==0){
+            System.out.println("Un nuage toxique se trouve au dessus de la créature "
+                                +c.getClass().getSimpleName()
+                                +" qui se trouve en : ["
+                                +c.getPos().getX()
+                                + " ,"
+                                +c.getPos().getY()
+                                +"] ");
+            c.setPtVie(c.getPtVie() - 2);
+            if(c instanceof Personnage){
+                System.out.println(((Personnage) c).nom 
+                                    +" perd 2 points de Vie et a maintenant "
+                                    +c.getPtVie()
+                                    +" points de Vie.");
+            }
+            else{
+                System.out.println(c.getClass().getSimpleName() 
+                                   +" perd 2 points de Vie et a maintenant "
+                                   +c.getPtVie()
+                                   +" points de Vie.");
+            }
+        }
+    }  
 }
