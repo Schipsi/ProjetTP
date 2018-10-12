@@ -130,7 +130,22 @@ public class World {
         }
     }
     
-    public void afficheWorld(){
+    public void afficheWorld() {
+        for(int i = 0; i < TAILLEMAX; i++) {
+            for(int j = 0; j < TAILLEMAX; j++) {
+                Point2D pos = new Point2D(i, j);
+                if (null != getCrea(pos) && !getObj(pos).isEmpty()) {
+                    System.out.print("x");
+                } else if (null != getCrea(pos)) {
+                    System.out.print("c");
+                } else if (!getObj(pos).isEmpty()) {
+                    System.out.print("o");
+                } else {
+                    System.out.print(".");
+                }
+            }
+            System.out.println("");
+        }
         
     }
     
@@ -211,7 +226,7 @@ public class World {
                 }
             }
             else if(e instanceof Monstre){
-                this.jouerMonstre((Monstre) m);
+                this.jouerMonstre((Monstre) e);
             }
         }
     }
