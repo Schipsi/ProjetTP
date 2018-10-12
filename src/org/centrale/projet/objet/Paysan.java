@@ -79,13 +79,4 @@ public class Paysan extends Personnage {
     public Paysan() {
         super();
     }
-    
-    /**
-     * Override de la méthode combattre défini dans la classe Creature, car le paysan ne peux pas combattre
-     * @param creature 
-     */
-    @Override
-    public void combattre(Creature creature){
-        System.out.println("je suis un paysan couard, je ne peux pas me battre");
-    }
 }

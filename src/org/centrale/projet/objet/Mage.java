@@ -11,7 +11,7 @@ import java.util.Random;
  *
  * @author Thibs
  */
-public class Mage extends Personnage {
+public class Mage extends Personnage implements Combattant{
     
     /**
      * Méthode Constructeur de la classe Mage prenant en compte les attributs suivants

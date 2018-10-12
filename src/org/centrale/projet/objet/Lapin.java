@@ -64,14 +64,6 @@ public class Lapin extends Monstre {
         super.affiche("Lapin");
     }
     
-    /**
-     * Override de la méthode combattre de la classe Creature , car le alpin ne sait pas combattre
-     * @param creature 
-     */
-    @Override
-    public void combattre(Creature creature){
-        System.out.println("je suis un faible lapin qui ne peut pas combattre");
-    }
     
     /**
      * Méthode fuir, permettant au lapin de se déplacer deux fois aléatoirement lorsqu'il est proche d'une autre créature
@@ -79,8 +71,8 @@ public class Lapin extends Monstre {
      */
     public void fuir(Creature creature){
         if (1 == this.getPos().distance(creature.getPos())){
-            this.deplace();
-            this.deplace();
+            this.deplacer();
+            this.deplacer();
         }
     }
            

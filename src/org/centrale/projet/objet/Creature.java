@@ -11,7 +11,7 @@ import java.util.Random;
  *
  * @author grego
  */
-abstract class Creature {
+abstract class Creature extends ElementDeJeu implements Deplacable{
     
     /**
      * Définie tous les attributs des creatures
@@ -131,7 +131,7 @@ abstract class Creature {
     /**
      * Méthode permettant le déplacement d'une créature de manière aléatoire sur une des cases adjacentes sans prendre en compte les positions déjà prises
      */
-    public void deplace() {
+    public void deplacer() {
         int x = 0;
         int y = 0;
         Random generateurAleatoire = new Random();
@@ -155,7 +155,7 @@ abstract class Creature {
      * Méthode de combat au corps à corps commun à la plupart des créatures 
      * @param creature 
      */
-    public void combattre(Creature creature) {
+    /*public void combattre(Creature creature) {
         System.out.println( "Un "+this.getClass().getSimpleName()+" veut attaquer un " + creature.getClass().getSimpleName());
         if (1 == this.getPos().distance(creature.getPos())) {
             System.out.println("Attaque au corps à corps");
@@ -177,5 +177,5 @@ abstract class Creature {
         else {
             System.out.println("Cette unité est trop loin pour être attaquée !");
         }
-    }
+    }*/
 }

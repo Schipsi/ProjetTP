@@ -11,7 +11,7 @@ import java.util.Random;
  *
  * @author grego
  */
-public class Archer extends Personnage {
+public class Archer extends Personnage implements Combattant {
 
     //définition des Attributs
     /**

@@ -9,7 +9,7 @@ package org.centrale.projet.objet;
  *
  * @author grego
  */
-public class Objet {
+abstract class Objet extends ElementDeJeu{
     
     /**
      * Définie tous les attributs des objets
