@@ -130,26 +130,43 @@ public class World {
         }
     }
     
-    public void afficheWorld(){
+    public void afficheWorld(List<ElementDeJeu> elements) {
+        for(int i = 0; i < TAILLEMAX; i++) {
+            for(int j = 0; j < TAILLEMAX; j++) {
+                Point2D pos = new Point2D(i, j);
+                if (null != getCrea(pos) && !getObj(pos).isEmpty()) {
+                    System.out.print("x");
+                } else if (null != getCrea(pos)) {
+                    System.out.print("c");
+                } else if (!getObj(pos).isEmpty()) {
+                    System.out.print("o");
+                } else {
+                    System.out.print(".");
+                }
+            }
+            System.out.println("");
+        }
         
     }
     
     public Creature getCrea(Point2D pos){
-        for(ElementDeJeu e: this.elementList)
+        for(ElementDeJeu e: this.elementList) {
             if(pos.distance(e.getPos()) == 0 && e instanceof Creature){
                 return ((Creature) e);
             }
-        return null;
         }
+        return null;
+    }
     
     public List<Objet> getObj(Point2D pos){
         List<Objet> objetList= new ArrayList<>();
-        for(ElementDeJeu e: this.elementList)
+        for(ElementDeJeu e: this.elementList) {
             if(pos.distance(e.getPos()) == 0 && e instanceof Objet){
                 objetList.add((Objet) e);
             }
-        return objetList;
         }
+        return objetList;
+    }
     
     public void tourDeJeu(){
         Scanner sc = new Scanner(System.in);
@@ -159,7 +176,7 @@ public class World {
             if(e instanceof Personnage){// on regarde si notre élément de jeu est un personnage
                 if(((Personnage) e).jouable){ // on rvérifie que le personnage est jouable
                     ((Personnage) e).affiche();
-                    this.afficheWorld();
+                    this.afficheWorld(elementList);
                     while(!chosen){
                         System.out.println("Que voulez vous faire ? "
                             + "\n 1- combattre "
