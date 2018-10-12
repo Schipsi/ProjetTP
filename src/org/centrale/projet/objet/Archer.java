@@ -84,7 +84,16 @@ public class Archer extends Personnage implements Combattant {
      */
     public Archer() {
         super();
-        this.nbFleches = 0;
+        Random lancerDeDes1 = new Random();
+        Random lancerDeDes2 = new Random();
+        this.degAtt= 5 + lancerDeDes1.nextInt(5) + lancerDeDes2.nextInt(5);
+        this.distAttMax =3;
+        this.pourcentageAtt = 30 + lancerDeDes1.nextInt(15)+ lancerDeDes2.nextInt(15);
+        this.pourcentagePar = 20 + lancerDeDes1.nextInt(15)+ lancerDeDes2.nextInt(15);
+        this.pourcentageResistMag = 15 + lancerDeDes1.nextInt(20)+ lancerDeDes2.nextInt(20);
+        this.ptPar = 5;
+        this.ptVie = 30 + lancerDeDes1.nextInt(10) + lancerDeDes2.nextInt(10);
+        this.nbFleches = 25;
     }
 
     //définition des Accesseurs et Mutateurs

@@ -5,6 +5,8 @@
  */
 package org.centrale.projet.objet;
 
+import java.util.Scanner;
+
 /**
  *
  * @author grego
@@ -193,5 +195,50 @@ abstract class Personnage extends Creature{
             + this.getPourcentageMag()
             + ")"
         );
+    }
+    /**
+     * Méthode deplacer où l'on demande au joueur dans quel direction il veut se déplacer.
+     */
+    public void deplacer(){
+        Scanner sc = new Scanner(System.in);
+        boolean chosen = false;
+        System.out.println("Votre personnage est en position ["+this.getPos().getX()+", "+this.getPos().getY()+"].");
+        while(!chosen){
+            System.out.println("Dans quel direction voulez vous aller ? "
+                    + "\n 1- en haut à gauche "
+                    + "\n 2- en haut "
+                    + "\n 3- en haut à droite "
+                    + "\n 4- à droite "
+                    + "\n 5- en bas à droite"
+                    + "\n 6- en bas"
+                    + "\n 7- en bas à gauche"
+                    + "\n 8- à gauche");
+            String posi = sc.nextLine();
+            if(posi.length()==1){
+                chosen=true;
+                switch(posi){
+                    case "1": this.pos.translater(-1, 1);
+                            break;
+                    case "2": this.pos.translater(0, 1);
+                              break;
+                    case "3": this.pos.translater(1, 1);
+                              break;
+                    case "4": this.pos.translater(1, 0);
+                              break;
+                    case "5": this.pos.translater(1, -1);
+                              break;
+                    case "6": this.pos.translater(0, -1);
+                              break;
+                    case "7": this.pos.translater(-1, -1);
+                              break;
+                    case "8": this.pos.translater(-1, 0);
+                              break;
+                    default: chosen=false;
+                             break;
+                }    
+            }
+        }
+        System.out.println("Votre personnage est maintenant en position ["+this.getPos().getX()+", "+this.getPos().getY()+"].");
+
     }
 }

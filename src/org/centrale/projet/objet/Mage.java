@@ -73,6 +73,16 @@ public class Mage extends Personnage implements Combattant{
      */
     public Mage() {
         super();
+        Random lancerDeDes1 = new Random();
+        Random lancerDeDes2 = new Random();
+        this.degMag= 6 + lancerDeDes1.nextInt(5) + lancerDeDes2.nextInt(5);
+        this.distAttMax = 3;
+        this.pourcentageMag = 30 + lancerDeDes1.nextInt(15)+ lancerDeDes2.nextInt(15);
+        this.pourcentagePar = 15 + lancerDeDes1.nextInt(15)+ lancerDeDes2.nextInt(15);
+        this.pourcentageResistMag = 25 + lancerDeDes1.nextInt(20)+ lancerDeDes2.nextInt(20);
+        this.ptMana = 30;
+        this.ptPar = 5;
+        this.ptVie = 25 + lancerDeDes1.nextInt(15) + lancerDeDes2.nextInt(15);
     }
     
     /**

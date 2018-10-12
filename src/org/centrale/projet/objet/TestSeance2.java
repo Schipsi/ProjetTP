@@ -11,6 +11,8 @@ package org.centrale.projet.objet;
  */
 public class TestSeance2 {
     public static void main(String[] args) {
-        World woEcn = new World();
+        Joueur joueur = new Joueur();
+        joueur.perso.affiche();
+        joueur.perso.deplacer();
     }
 }
