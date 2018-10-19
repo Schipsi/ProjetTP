@@ -5,9 +5,11 @@
  */
 package org.centrale.projet.objet;
 
+/*
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
+*/
 
 /**
  *
@@ -16,7 +18,8 @@ import java.util.Set;
 public class TestSeance2 {
     public static void main(String[] args) {
         
-        /*int notes[] = {2, 20, 17, 5};
+        /*
+        int notes[] = {2, 20, 17, 5};
         try {
             System.out.println(notes[4]);
         } catch (ArrayIndexOutOfBoundsException e) {
@@ -44,14 +47,14 @@ public class TestSeance2 {
             int nombre = Integer.parseInt("Ceci n'est pas un nombre du tout !");
         } catch (NumberFormatException e) {
             System.out.println("Format de nombre invalide !");
-        }*/
+        }
+        */
         
-        World monde =new World();
-        monde.jouer();
-        //Loup l = new Loup();
-        //System.out.println(monde.collision(l));
+        ChargementPartie loading = new ChargementPartie("source.txt");
+        World monde = loading.chargerPartie();
+        monde.afficheWorld();
+        monde.tourDeJeu();
         //joueur.perso.affiche();
         //joueur.perso.deplacer();
-        
     }
 }

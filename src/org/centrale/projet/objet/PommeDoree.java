@@ -20,8 +20,16 @@ public class PommeDoree extends Nourriture{
      * Méthode constructeur de la classe PommeDoree
      */
     public PommeDoree(){
-       super(); 
-       augPointPar = 90;
+        super(); 
+        augPointPar = 90;
+    }
+    
+    public PommeDoree(
+        int duree,
+        Point2D pos
+    ) {
+        this.duree = duree;
+        this.pos = new Point2D(pos.getX(), pos.getY()); 
     }
     
     /**

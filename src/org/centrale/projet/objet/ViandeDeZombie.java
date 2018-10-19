@@ -20,8 +20,16 @@ public class ViandeDeZombie extends Nourriture{
      * Méthode constructeur de la classe viande Zombie  
      */
     public ViandeDeZombie(){
-       super(); 
-       dimPourcentagePar = -20;
+        super(); 
+        dimPourcentagePar = -20;
+    }
+    
+    public ViandeDeZombie(
+       int duree,
+       Point2D pos
+    ) {
+        this.duree = duree;
+        this.pos = new Point2D(pos.getX(), pos.getY());
     }
     
     /**

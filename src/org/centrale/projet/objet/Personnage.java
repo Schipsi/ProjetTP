@@ -97,7 +97,11 @@ abstract class Personnage extends Creature implements Combattant{
         this.pos = new Point2D(pos.getX(), pos.getY());
         this.jouable = jouable;
         for(Nourriture n: buffs){
-            this.buffs.add(n);
+            if (n instanceof ViandeDeZombie) {
+                this.buffs.add(new ViandeDeZombie(n.getDuree(), new Point2D(15, 15)));
+            } else if (n instanceof PommeDoree) {
+                this.buffs.add(new PommeDoree(n.getDuree(), new Point2D(15, 15)));
+            }
         }
     }
     

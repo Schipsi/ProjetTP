@@ -19,11 +19,9 @@ import java.util.Scanner;
  */
 public class World {
     //définition de la taille max du monde 
-    private final int TAILLEMAX = 50;
-    /**
-     * liste de tout le éléments du jeu, personnage, monstre et objets 
-     */
-    private List<ElementDeJeu> elementList = new ArrayList<>();
+
+    public int tailleMax = 50;
+    public List<ElementDeJeu> elementList = new ArrayList<>();
            
     /**
      * Définition de la Méthode Constructeur de la classe World qui sert plus ici à afficher nos résultats
@@ -111,6 +109,10 @@ public class World {
         System.out.println("Le temps écoulé pour le calcul du barycentre est de : "+ (fin2N-debut2N)+" nanosecondes");*/
     }
     
+    public World(int taille) {
+        this.setTailleMax(taille);
+    }
+    
     /**
      * Méthode creeMondeAlea créant un positionnant des personnages se trouvant dans une liste de créature au préalable,
      * de manière à qu'ils ne se trouvent pas sur la même case et que chaque personnage soit à une distance de 5 d'au moins un autre personnage
@@ -123,7 +125,7 @@ public class World {
         for(ElementDeJeu e : elements){
             verify = false;
             while(!verify){
-                e.setPos(new Point2D(generateurAleatoire.nextInt(TAILLEMAX), generateurAleatoire.nextInt(TAILLEMAX)));
+                e.setPos(new Point2D(generateurAleatoire.nextInt(tailleMax), generateurAleatoire.nextInt(tailleMax)));
                 if(list2Points.isEmpty()){ //cas particulier pour le premier élément qui ne doit pas vérifier les conditions
                     verify=true;
                     list2Points.add(e.getPos());
@@ -147,10 +149,9 @@ public class World {
      * méthode affichant le monde avec p pour personnage , m pour monstre, o pour objet mais aussi avec q si il y a un objet et un personnage ou n si il y a un monstre et un objet
      */
     public void afficheWorld() {
-        Point2D pos;
-        for(int j = TAILLEMAX -1; j >=0; j--) {
-            for(int i = 0; i < TAILLEMAX; i++) {
-                pos = new Point2D(i, j);
+        for(int i = 0; i < tailleMax; i++) {
+            for(int j = 0; j < tailleMax; j++) {
+                Point2D pos = new Point2D(i, j);
                 if (null != getCrea(pos) && getCrea(pos) instanceof Personnage && !getObj(pos).isEmpty()) {
                     System.out.print("q");
                 } else if (null != getCrea(pos) && getCrea(pos) instanceof Creature && !getObj(pos).isEmpty()) {
@@ -422,6 +423,7 @@ public class World {
             }
         }
     }
+
     /**
      * Méthode pour faire des tours de jeu jusqu'à que l'utilisateur décide d'arreter de jouer.
      */
@@ -450,5 +452,21 @@ public class World {
             }
             error=true;
         }
+    }
+
+    public int getTailleMax() {
+        return tailleMax;
+    }
+
+    public void setTailleMax(int tailleMax) {
+        this.tailleMax = tailleMax;
+    }
+
+    public List<ElementDeJeu> getElementList() {
+        return elementList;
+    }
+
+    public void setElementList(List<ElementDeJeu> elementList) {
+        this.elementList = elementList;
     }
 }   

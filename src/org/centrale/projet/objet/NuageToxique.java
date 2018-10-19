@@ -20,6 +20,12 @@ public class NuageToxique extends Objet implements Combattant, Deplacable{
         
     }
     
+    public NuageToxique(
+        Point2D pos
+    ) {
+        this.pos = new Point2D(pos.getX(), pos.getY());
+    }
+    
     
     /**
      * Méthode déplacer du nuage, le déplaçant de manière aléatoire
