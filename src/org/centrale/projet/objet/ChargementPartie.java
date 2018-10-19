@@ -40,14 +40,18 @@ public class ChargementPartie {
                    while (listBuffs.hasMoreTokens()) {
                        String typeBuff = listBuffs.nextToken();
                        if (typeBuff.equals("PommeDoree")) {
-                           buffs.add(new PommeDoree(Integer.parseInt(listBuffs.nextToken()), new Point2D()));
+                           Nourriture nourriture = new PommeDoree(Integer.parseInt(listBuffs.nextToken()), new Point2D());
+                           nourriture.pos = null;
+                           buffs.add(nourriture);
                        } else if (typeBuff.equals("ViandeDeZombie")) {
-                           buffs.add(new ViandeDeZombie(Integer.parseInt(listBuffs.nextToken()), new Point2D()));
+                           Nourriture nourriture = new ViandeDeZombie(Integer.parseInt(listBuffs.nextToken()), new Point2D());
+                           nourriture.pos = null;
+                           buffs.add(nourriture);
                        }
                    }
                 }
                 StringTokenizer tokenizer = new StringTokenizer(temp, " ");
-                while (tokenizer.hasMoreTokens()) {
+                if (tokenizer.hasMoreTokens()) {
                     String mot  = tokenizer.nextToken();
                     if (mot.equals("Taille")) {
                         taille = Integer.parseInt(tokenizer.nextToken());

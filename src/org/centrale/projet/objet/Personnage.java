@@ -47,7 +47,7 @@ abstract class Personnage extends Creature implements Combattant{
     /**
      * liste de bonus ou malus donné par la nourriture consommée
      */
-    protected List<Nourriture> buffs;
+    protected List<Nourriture> buffs = new ArrayList<>();
     
     //création des méthodes constructeurs
     /**
@@ -97,11 +97,7 @@ abstract class Personnage extends Creature implements Combattant{
         this.pos = new Point2D(pos.getX(), pos.getY());
         this.jouable = jouable;
         for(Nourriture n: buffs){
-            if (n instanceof ViandeDeZombie) {
-                this.buffs.add(new ViandeDeZombie(n.getDuree(), new Point2D(15, 15)));
-            } else if (n instanceof PommeDoree) {
-                this.buffs.add(new PommeDoree(n.getDuree(), new Point2D(15, 15)));
-            }
+            this.buffs.add(n);
         }
     }
     
@@ -291,7 +287,7 @@ abstract class Personnage extends Creature implements Combattant{
     public void manger(Nourriture n){
         if(this.getPos().distance(n.getPos())==0){
             this.buffs.add(n);
-            n.pos=null;
+            n.pos = null;
         }
     }
 }
