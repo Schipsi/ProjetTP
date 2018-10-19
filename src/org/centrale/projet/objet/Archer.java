@@ -149,7 +149,7 @@ public class Archer extends Personnage implements Combattant {
             System.out.println("Attaque au corps à corps");
             if (this.getPourcentageAtt() <= dice.nextInt(100)) {
                 System.out.println(this.getNom() +" réussi son jet d'attaque ");
-                if (dice.nextInt(100) > creature.getPourcentagePar()) {
+                if (dice.nextInt(100) <= creature.getPourcentagePar()) {
                      System.out.println("Le "+creature.getClass().getSimpleName()+" réussi à parer ");
                 } else if (this.getDegAtt() > creature.getPtPar()) { //on test si les dégats d'attaques sont supérieurs au dégats de parade sinon ça va heal
                     creature.setPtVie(creature.getPtVie() - this.getDegAtt() + creature.getPtPar());

@@ -51,6 +51,14 @@ public class Loup extends Monstre implements Combattant{
      * Méthode Constructeur de la classe Loupne prenant en compte aucun attribut
      */
         public Loup() {
+            super(
+                 10,
+                  0,
+                  40,
+                  0,
+                  2,
+                  new Point2D()
+                   );
     }
     
     /**
@@ -80,7 +88,7 @@ public class Loup extends Monstre implements Combattant{
                 }
             }
             else {
-                System.out.println("Le "+this.getClass().getSimpleName() +"rate son jet d'attaque ");
+                System.out.println("Le "+this.getClass().getSimpleName() +" rate son jet d'attaque ");
             }
         }
         else {

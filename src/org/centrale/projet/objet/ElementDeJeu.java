@@ -17,7 +17,9 @@ abstract class ElementDeJeu {
     }
 
     public void setPos(Point2D pos) {
-        this.pos = pos;
+        this.pos.setX(pos.getX());
+        this.pos.setY(pos.getY());
     }
-    
+
+
 }

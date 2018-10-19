@@ -33,9 +33,9 @@ public class World {
         int nbMage = 0;
         int nbPaysan = 0;
         int nbLapin = 0;
-        int nbLoup = seed.nextInt(10) + 45;
-        int nbPotionSoin = 5;
-        int nbPotionMana = 5;
+        int nbLoup = seed.nextInt(2) + 100;
+        int nbPotionSoin = 20;
+        int nbPotionMana = 20;
         
         
         for (int i = 0; i < nbArcher; i++) {
@@ -57,10 +57,10 @@ public class World {
             elementList.add(new Loup());
         }
         for (int i = 0; i < nbPotionSoin; i++) {
-            elementList.add(new Soin());
+            elementList.add(new Soin(5, new Point2D()));
         }
         for (int i = 0; i < nbPotionMana; i++) {
-            elementList.add(new Mana());
+            elementList.add(new Mana(5, new Point2D()));
         }
         
         Joueur player1 = new Joueur();
@@ -142,9 +142,10 @@ public class World {
     }
     
     public void afficheWorld() {
-        for(int i = 0; i < TAILLEMAX; i++) {
-            for(int j = 0; j < TAILLEMAX; j++) {
-                Point2D pos = new Point2D(i, j);
+        Point2D pos;
+        for(int j = TAILLEMAX -1; j >=0; j--) {
+            for(int i = 0; i < TAILLEMAX; i++) {
+                pos = new Point2D(i, j);
                 if (null != getCrea(pos) && getCrea(pos) instanceof Personnage && !getObj(pos).isEmpty()) {
                     System.out.print("q");
                 } else if (null != getCrea(pos) && getCrea(pos) instanceof Creature && !getObj(pos).isEmpty()) {
@@ -161,7 +162,6 @@ public class World {
             }
             System.out.println("");
         }
-        
     }
     
     public Creature getCrea(Point2D pos){
@@ -218,10 +218,11 @@ public class World {
      * @param elements liste des éléments constituants le monde
      * @return 
      */
-    public boolean collision(Creature c,  List<ElementDeJeu> elements){
-        for(ElementDeJeu e:elements){
-            if(c.getPos().distance(e.getPos())==0 && e instanceof Creature)
+    public boolean collision(Creature c){
+        for(ElementDeJeu e:this.elementList){
+            if(c.getPos().distance(e.getPos())==0 && e instanceof Creature){
                 return true;
+            }
         }
         return false;
     }
@@ -231,9 +232,9 @@ public class World {
      */
     public void jouerPerso(Personnage e){
         Scanner sc = new Scanner(System.in);
+        Personnage copie;
         boolean chosen = false;
         boolean chosen2 = false;
-        e.affiche();
         this.afficheWorld();
         while(!chosen){
             System.out.println("Que voulez vous faire ? "
@@ -270,14 +271,17 @@ public class World {
             else if(choix.equals("2")){
                 boolean collision = true;
                 if(!this.cerner(e, this.elementList)){
-                Personnage copie = new Guerrier();
+                copie = new Paysan();
                     while(collision){
-                        copie.setPos(e.getPos());
+                        copie.getPos().setX(e.getPos().getX());
+                        copie.getPos().setY(e.getPos().getY());
                         copie.deplacer();
-                        collision = this.collision(copie, this.elementList);
+                        collision = this.collision(copie);
                     }
                     e.setPos(copie.getPos());
                 }
+                chosen=true;
+                
             }
             else{
                 System.out.println("Veuillez choisir le chiffre 1(combattre) ou 2(se deplacer) ");
@@ -285,13 +289,19 @@ public class World {
         }  
     }
     
-    
-    public void jouerMonstre(Monstre m){
+    /**
+     * 
+     * @param m
+     * @return remove : enlèv ele monstre si sa vie est négative ou nulle
+     */
+    public boolean jouerMonstre(Monstre m){
+        if (m.getPtVie()<=0){
+            return true;
+        }
         if(m instanceof Loup){
             for(ElementDeJeu e : this.elementList){
                 if(m.getPos().distance(e.getPos())==1 && e instanceof Creature){
                     ((Loup) m).combattre((Creature) e);
-                    return ;
                 }
             }
         }
@@ -299,49 +309,79 @@ public class World {
         if(!this.cerner(m, this.elementList)){
             Creature copie = new Loup();
             while(collision){
-                copie.setPos(m.getPos());
+                copie.getPos().setX(m.getPos().getX());
+                copie.getPos().setY(m.getPos().getY());
                 copie.deplacer();
-                collision = this.collision(copie, this.elementList);
+                collision = this.collision(copie);
             }
             m.setPos(copie.getPos());
         }
+        return false;
     }
     
     /**
-     * Méthode pour faire "jouer" les objets , i.e. les faire se consommer si quelqu'un se trouve dessus et faire bouger le nuage
+     * Méthode pour faire "jouer" les objets , i.e. les faire se consommer si quelqu'un se trouve dessus et faire bouger le nuage, revoie true si l'objet doit être supprimé
      * @param o objet qui peut être une potion, de la nourriture ou un nuage toxique
      */
-    public void jouerObjet(Objet o){
-        for(ElementDeJeu e: this.elementList){
+    public boolean jouerObjet(Objet o){
+        Iterator<ElementDeJeu> itrO = this.elementList.iterator();
+        ElementDeJeu e;
+        boolean remove =false;
+        while(itrO.hasNext()){
+            e= itrO.next();
             if(o.getPos().distance(e.getPos())==0 && e instanceof Personnage){
-                if(o instanceof Potion){//l potion est bue
-                    ((Potion)o).boire((Creature)e);
+                if(o instanceof Mana){//l potion est bue
+                    ((Mana)o).boire((Personnage)e);
+                    remove=true;
+                    System.out.println("la potion disparait ");
+                }
+                if(o instanceof Soin){//l potion est bue
+                    ((Soin)o).boire((Personnage)e);
+                    remove=true;
+                    System.out.println("la potion disparait ");
                 }
                 else if(o instanceof Nourriture){//on mange la nourriture
                     ((Personnage)e).Manger((Nourriture)o);
+                    System.out.println("Nourriture mangée");
+                    System.out.println("c'était de la "+o.getClass().getSimpleName());
+                    remove=true;
                 }
                 else if(o instanceof NuageToxique){
                     ((NuageToxique)o).combattre((Creature)e);
-                }    
+                }
             }
         }
         if(o instanceof NuageToxique){
             ((NuageToxique)o).deplacer();
         }
+        return remove;
     }
     
+    /**
+     * Méthode faisant jouer tout les personnages jouables, les monstres et activant les objets, puis elle regarde les buffs, les actives ou les désactive si nécessaire et supprime ceux qui sont périmés
+     */
     public void tourDeJeu(){
         for(ElementDeJeu e : this.elementList){//on fait jouer tout les personnages, monstres, objets
             if(e instanceof Personnage){// on regarde si notre élément de jeu est un personnage
                 if(((Personnage) e).jouable){ // on vérifie que le personnage est jouable
+                    ((Personnage) e).affiche();
                     this.jouerPerso((Personnage) e);
                 }
             }
-            else if(e instanceof Monstre){
-                this.jouerMonstre((Monstre) e);
+        }
+        Iterator<ElementDeJeu> itrE = this.elementList.iterator();
+        while(itrE.hasNext()){
+            ElementDeJeu e=itrE.next();
+            if(e instanceof Monstre){
+                if(this.jouerMonstre((Monstre) e)){//on fait jouer le monstre et on regarde si il meurt
+                    System.out.println("Le "+ e.getClass().getSimpleName()+" qui est en ["+e.getPos().getX()+", "+e.getPos().getY()+"] succombe à la suite de ses blessures.");
+                    itrE.remove();
+                }
             }
-            else if(e instanceof Object){
-                this.jouerObjet((Objet)e);
+            else if(e instanceof Objet){
+                if(this.jouerObjet((Objet)e)){
+                    itrE.remove();
+                }
             }
         }
         for(ElementDeJeu e : this.elementList){//on fait le tour des buffs et des débuffs
@@ -357,7 +397,7 @@ public class World {
                 }
             }
         }
-        for(ElementDeJeu e : this.elementList){//on fait le tour des buffs et des débuffs pour supprimer ceux qui sont périmés
+        for(ElementDeJeu e : this.elementList){//on fait le tour des buffs et des débuffs pour supprimer ceux qui sont périmés (ce n'est pas absolument nécessaire dans notre cas)
             if(e instanceof Personnage){
                 Iterator<Nourriture> itr = ((Personnage)e).buffs.iterator();//comme on supprime au fur et à mesure il est plus sur de fonctionner avec des itérateurs
                 while(itr.hasNext()){
@@ -367,6 +407,33 @@ public class World {
                     }
                 }
             }
+        }
+    }
+    
+    public void jouer(){
+        Scanner sc = new Scanner(System.in);
+        boolean cont = true;
+        boolean error =true;
+        while(cont){
+            this.tourDeJeu();
+            while(error){
+                System.out.println("Voulez vous continuer ? [y/n]");
+                String choix = sc.nextLine();
+                if(choix.equals("n")){
+                    this.afficheWorld();
+                    System.out.println("Merci d'avoir joué");
+                    error = false;
+                    cont = false;
+                }
+                else if(choix.equals("y")){
+                    System.out.println("Un ptit tour de plus !");
+                    error=false;
+                }
+                else{
+                    System.out.println("Merci d'écrire 'y' ou 'n'");
+                }
+            }
+            error=true;
         }
     }
 }   

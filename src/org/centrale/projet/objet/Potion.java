@@ -9,7 +9,7 @@ package org.centrale.projet.objet;
  *
  * @author grego
  */
-public class Potion extends Objet {
+abstract class Potion extends Objet {
     
     /**
      * Définie tous les attributs des potions
@@ -57,7 +57,7 @@ public class Potion extends Objet {
         this.ptRegen = ptRegen;
     }
     
-    public void boire(Creature c){
+    public void boire(Personnage p){
         
     }
 }

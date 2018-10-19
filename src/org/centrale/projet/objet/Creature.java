@@ -123,9 +123,11 @@ abstract class Creature extends ElementDeJeu implements Deplacable{
     public Point2D getPos() {
         return pos;
     }
-
+    
+    @Override
     public void setPos(Point2D pos) {
-        this.pos = pos;
+        this.pos.setX(pos.getX());
+        this.pos.setY(pos.getY());
     }
     
     /**

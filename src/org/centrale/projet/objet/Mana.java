@@ -49,6 +49,7 @@ public class Mana extends Potion {
         if (0 == this.pos.distance(p.pos)) {
             p.setPtMana(p.getPtMana() + this.ptRegen);
             this.pos = null;
+            System.out.println("Potion de Mana bue");
         }
     }
 }
