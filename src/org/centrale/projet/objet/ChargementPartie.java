@@ -15,13 +15,28 @@ import java.util.StringTokenizer;
  * @author Thibs
  */
 public class ChargementPartie {
+    
+    /**
+     * nom du fichier source qui est sauvegarde du monde
+     */
     protected String source;
+    /**
+     * je sais pas ce que c'est mais ça marche 
+     */
     protected BufferedReader buffer;
     
+    /**
+     * Méthode constructeur de la classe Chargement Partie
+     * @param source nom du fichier de sauvegarde
+     */
     public ChargementPartie(String source) {
         this.source = source;
     }
     
+    /**
+     * Méthode chargeant une partie depuis un fichier de sauvegarde
+     * @return un monde avec tout les personnages, monstres et objets
+     */
     public World chargerPartie() {
         int taille = 0;
         List<ElementDeJeu> elementList = new ArrayList<>();        
