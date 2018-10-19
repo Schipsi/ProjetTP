@@ -14,12 +14,12 @@ import java.util.Random;
 public class Loup extends Monstre implements Combattant{
     /**
      * Méthode Constructeur de la classe Loup prenant en compte les attributs suivants
-     * @param ptVie
-     * @param ptPar
-     * @param pourcentageAtt
-     * @param pourcentagePar
-     * @param degAtt
-     * @param pos 
+     * @param ptVie points de vie du loup
+     * @param ptPar points de parade du loup
+     * @param pourcentageAtt pourcentage de chance de réussir une attaque
+     * @param pourcentagePar pourcentage de chance de réussir une parade
+     * @param degAtt dégats d'attaque du loup 
+     * @param pos position du loup
      */
     public Loup(
         int ptVie, 
@@ -41,10 +41,10 @@ public class Loup extends Monstre implements Combattant{
     
     /**
      * Méthode Constructeur Copie de la classe Loup faisant une copie d'une instance de loup déjà existante
-     * @param m 
+     * @param l Loup
      */
-    public Loup(Monstre m) {
-        super(m);
+    public Loup(Loup l) {
+        super(l);
     }
     
     /**
@@ -84,15 +84,15 @@ public class Loup extends Monstre implements Combattant{
                 } else if (this.getDegAtt() > creature.getPtPar()) { //on test si les dégats d'attaques sont supérieurs au dégats de parade sinon ça va heal
                     creature.setPtVie(creature.getPtVie() - this.getDegAtt() + creature.getPtPar());
                     System.out.println("Le "+creature.getClass().getSimpleName()+" s'est pris "+ (this.getDegAtt() - creature.getPtPar())+" dégats");
-                    System.out.println("Il lui reste "+creature.getPtVie()+" points de vie.");
+                    System.out.println("Il lui reste "+creature.getPtVie()+" points de vie. \n");
                 }
             }
             else {
-                System.out.println("Le "+this.getClass().getSimpleName() +" rate son jet d'attaque ");
+                System.out.println("Le "+this.getClass().getSimpleName() +" rate son jet d'attaque \n");
             }
         }
         else {
-            System.out.println("Cette unité est trop loin pour être attaquée !");
+            System.out.println("Cette unité est trop loin pour être attaquée ! \n");
         }
     }
     

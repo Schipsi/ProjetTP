@@ -16,19 +16,19 @@ public class Mage extends Personnage implements Combattant{
     
     /**
      * Méthode Constructeur de la classe Mage prenant en compte les attributs suivants
-     * @param nom
-     * @param ptVie
-     * @param ptPar
-     * @param ptMana
-     * @param pourcentageAtt
-     * @param pourcentagePar
-     * @param pourcentageMag
-     * @param pourcentageResistMag
-     * @param degAtt
-     * @param degMag
-     * @param distAttMax
-     * @param pos
-     * @param jouable
+     * @param nom nom du mage   
+     * @param ptVie points de vie du mage
+     * @param ptPar points de parade du mage
+     * @param ptMana points de Mana du mage
+     * @param pourcentageAtt pourcentage de chance de réussir une attaque physique
+     * @param pourcentagePar pourcentage de chance de réussir une parade
+     * @param pourcentageMag pourcentage de chance de réussir une attaque magique 
+     * @param pourcentageResistMag pourcentage de chance de résister à une attaque magique
+     * @param degAtt degats physique infligés sur une attaque réussie
+     * @param degMag degats magique infligés sur une attaque réussie
+     * @param distAttMax distance d'attaque maximale
+     * @param pos position du mage en 2 dimensions
+     * @param jouable le personnage est un jouable ou non
      */
     public Mage(
             String nom,
@@ -117,10 +117,10 @@ public class Mage extends Personnage implements Combattant{
     }
     
     /**
-     * Override de la méthode combattre défini dans la classe Creature, car le mage ne se bat pas au corps à corps et se bat avec de la magie
-     * @param creature 
+     * Implémentation de la méthode combattre de l'interface combattant, sachant que le mage se bat exclusivement avec de la magie.
+     * @param creature créature visée par le mage
      */
-    @Override
+    
     public void combattre(Creature creature) {
        Random dice = new Random();
        System.out.println( this.getNom()+" qui est un "+this.getClass().getSimpleName()+" veut attaquer un " + creature.getClass().getSimpleName());
@@ -132,14 +132,14 @@ public class Mage extends Personnage implements Combattant{
                   System.out.println(this.getNom() +" réussi son jet d'attaque ");
                   creature.setPtVie(creature.getPtVie() - this.getDegMag());
                   System.out.println("Le "+creature.getClass().getSimpleName()+" s'est pris "+ (this.getDegAtt() - creature.getPtPar())+" dégats");
-                  System.out.println("Il lui reste "+creature.getPtVie()+" points de vie.");
+                  System.out.println("Il lui reste "+creature.getPtVie()+" points de vie.\n");
                 }
                else{
-                   System.out.println(this.getNom() +" rate son jet d'attaque ");
+                   System.out.println(this.getNom() +" rate son jet d'attaque \n");
                }
            } 
            else {
-               System.out.println("Je n'ai pas assez de mana pour lancer un sort...");
+               System.out.println("Je n'ai pas assez de mana pour lancer un sort...\n");
            }
        }
     }

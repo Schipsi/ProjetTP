@@ -16,19 +16,19 @@ public class Guerrier extends Personnage implements Combattant {
    
     /**
      * Méthode Cosntructeur de la classe Guerrier prenant en compte les attributs suivants
-     * @param nom
-     * @param ptVie
-     * @param ptPar
-     * @param ptMana
-     * @param pourcentageAtt
-     * @param pourcentagePar
-     * @param pourcentageMag
-     * @param pourcentageResistMag
-     * @param degAtt
-     * @param degMag
-     * @param distAttMax
-     * @param pos
-     * @param jouable
+      @param nom nom du guerrier   
+     * @param ptVie points de vie du guerrier  
+     * @param ptPar points de parade du guerrier  
+     * @param ptMana points de Mana du guerrier
+     * @param pourcentageAtt pourcentage de chance de réussir une attaque physique
+     * @param pourcentagePar pourcentage de chance de réussir une parade
+     * @param pourcentageMag pourcentage de chance de réussir une attaque magique 
+     * @param pourcentageResistMag pourcentage de chance de résister à une attaque magique
+     * @param degAtt degats physique infligés sur une attaque réussie
+     * @param degMag degats magique infligés sur une attaque réussie
+     * @param distAttMax distance d'attaque maximale
+     * @param pos position du guerrier en 2 dimensions
+     * @param jouable le personnage est un jouable ou non
      */
     public Guerrier(
             String nom,
@@ -90,6 +90,10 @@ public class Guerrier extends Personnage implements Combattant {
         this.ptVie = 35 + lancerDeDes1.nextInt(10) + lancerDeDes2.nextInt(10);
     }
     
+    /**
+     * Implémenttion de la méthode combattre de l'interface combattant
+     * @param creature creature contre laquelle le guerrrier se bat
+     */
     public void combattre(Creature creature) {
         System.out.println( "Un Guerrier nommé "+this.nom+" veut attaquer un " + creature.getClass().getSimpleName());
         if (1 == this.getPos().distance(creature.getPos())) {
@@ -102,15 +106,15 @@ public class Guerrier extends Personnage implements Combattant {
                 } else if (this.getDegAtt() > creature.getPtPar()) { //on test si les dégats d'attaques sont supérieurs au dégats de parade sinon ça va heal
                     creature.setPtVie(creature.getPtVie() - this.getDegAtt() + creature.getPtPar());
                     System.out.println("Le "+creature.getClass().getSimpleName()+" s'est pris "+ (this.getDegAtt() - creature.getPtPar())+" dégats");
-                    System.out.println("Il lui reste "+creature.getPtVie()+" points de vie.");
+                    System.out.println("Il lui reste "+creature.getPtVie()+" points de vie.\n");
                 }
             }
             else {
-                System.out.println("Le "+this.getClass().getSimpleName() +"rate son jet d'attaque ");
+                System.out.println("Le "+this.getClass().getSimpleName() +"rate son jet d'attaque \n");
             }
         }
         else {
-            System.out.println("Cette unité est trop loin pour être attaquée !");
+            System.out.println("Cette unité est trop loin pour être attaquée !\n");
         }
     }
     

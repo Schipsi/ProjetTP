@@ -20,6 +20,9 @@ import java.util.Scanner;
 public class World {
     //définition de la taille max du monde 
     private final int TAILLEMAX = 50;
+    /**
+     * liste de tout le éléments du jeu, personnage, monstre et objets 
+     */
     private List<ElementDeJeu> elementList = new ArrayList<>();
            
     /**
@@ -111,7 +114,7 @@ public class World {
     /**
      * Méthode creeMondeAlea créant un positionnant des personnages se trouvant dans une liste de créature au préalable,
      * de manière à qu'ils ne se trouvent pas sur la même case et que chaque personnage soit à une distance de 5 d'au moins un autre personnage
-     * @param creature 
+     * @param elements liste de tout les éléments qui vont constituer le monde 
      */
     public void creeMondeAlea(List<ElementDeJeu> elements){
         List<Point2D> list2Points = new ArrayList<>();
@@ -140,7 +143,9 @@ public class World {
             e.getPos().affiche();
         }
     }
-    
+    /**
+     * méthode affichant le monde avec p pour personnage , m pour monstre, o pour objet mais aussi avec q si il y a un objet et un personnage ou n si il y a un monstre et un objet
+     */
     public void afficheWorld() {
         Point2D pos;
         for(int j = TAILLEMAX -1; j >=0; j--) {
@@ -163,7 +168,11 @@ public class World {
             System.out.println("");
         }
     }
-    
+    /**
+     * méthode renvoyant la créature se trouvant sur une positiion
+     * @param pos position sur laquelle on cherche
+     * @return une créature (la créature peut être nulle)
+     */
     public Creature getCrea(Point2D pos){
         for(ElementDeJeu e: this.elementList){
             if(pos.distance(e.getPos()) == 0 && e instanceof Creature){
@@ -173,6 +182,11 @@ public class World {
         return null;
     }
     
+    /**
+     * méthode retournant la liste des objets se trouvant sur une position 
+     * @param pos position sur laquelle on cherche
+     * @return une liste d'objets
+     */
     public List<Objet> getObj(Point2D pos){
         List<Objet> objetList= new ArrayList<>();
         for(ElementDeJeu e: this.elementList){
@@ -184,11 +198,11 @@ public class World {
     }
     
     /**
-     * Méthode cerner dont le but est de savoir si une creature est cernée par d'autre créature, dans ce cas ci la créature ne peut pas bouger
-     * pb de la méthode : est consomme beaucoup de temps de calcul
+     * Méthode cerner dont le but est de savoir si une creature est cernée par d'autres créatures, dans ce cas ci la créature ne peut pas bouger. 
+     * pb de la méthode : elle consomme beaucoup de temps de calcul
      * @param c creature 
      * @param elements list composée de tout les éléments de jeu
-     * @return 
+     * @return true si cernée
      */
     public boolean cerner(Creature c, List<ElementDeJeu> elements){
         int compteur =0;
@@ -214,9 +228,8 @@ public class World {
     }
     /**
      * Méthode renvoyant true si la case est occupée par une créature, false sinon 
-     * @param Creature creature caractérisée par sa position
-     * @param elements liste des éléments constituants le monde
-     * @return 
+     * @param c creature caractérisée par sa position
+     * @return  true si il y a collision, false sinon
      */
     public boolean collision(Creature c){
         for(ElementDeJeu e:this.elementList){
@@ -290,9 +303,9 @@ public class World {
     }
     
     /**
-     * 
-     * @param m
-     * @return remove : enlèv ele monstre si sa vie est négative ou nulle
+     * méthode faisant jouer les monstres en les faisant se déplacer au hasard ou combattre si ils peuvent
+     * @param m monstre joué
+     * @return remove : enlève le monstre si sa vie est négative ou nulle
      */
     public boolean jouerMonstre(Monstre m){
         if (m.getPtVie()<=0){
@@ -341,7 +354,7 @@ public class World {
                     System.out.println("la potion disparait ");
                 }
                 else if(o instanceof Nourriture){//on mange la nourriture
-                    ((Personnage)e).Manger((Nourriture)o);
+                    ((Personnage)e).manger((Nourriture)o);
                     System.out.println("Nourriture mangée");
                     System.out.println("c'était de la "+o.getClass().getSimpleName());
                     remove=true;
@@ -374,7 +387,7 @@ public class World {
             ElementDeJeu e=itrE.next();
             if(e instanceof Monstre){
                 if(this.jouerMonstre((Monstre) e)){//on fait jouer le monstre et on regarde si il meurt
-                    System.out.println("Le "+ e.getClass().getSimpleName()+" qui est en ["+e.getPos().getX()+", "+e.getPos().getY()+"] succombe à la suite de ses blessures.");
+                    System.out.println("Le "+ e.getClass().getSimpleName()+" qui est en ["+e.getPos().getX()+", "+e.getPos().getY()+"] succombe à la suite de ses blessures. \n");
                     itrE.remove();
                 }
             }
@@ -409,7 +422,9 @@ public class World {
             }
         }
     }
-    
+    /**
+     * Méthode pour faire des tours de jeu jusqu'à que l'utilisateur décide d'arreter de jouer.
+     */
     public void jouer(){
         Scanner sc = new Scanner(System.in);
         boolean cont = true;

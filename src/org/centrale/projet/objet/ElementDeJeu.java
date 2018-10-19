@@ -12,6 +12,21 @@ package org.centrale.projet.objet;
 abstract class ElementDeJeu {
      protected Point2D pos;
 
+     /**
+      * Méthode constructeur de la classe ElementDeJeu
+      * @param pos position de l'élément
+      */
+    public ElementDeJeu(Point2D pos) {
+        this.pos = pos;
+    }
+    
+     /**
+      * Méthode constructeur de la classe ElementDeJeu
+      */
+    public ElementDeJeu(){
+        this.pos=null;
+    }
+     
     public Point2D getPos() {
         return pos;
     }

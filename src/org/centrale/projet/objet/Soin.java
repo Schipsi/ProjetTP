@@ -43,7 +43,7 @@ public class Soin extends Potion{
     
     /**
      * Méthode faisant soigner des points de vie à l'unité sur la potion.
-     * @param c creature sur laquelle appliquer la potion
+     * @param p personnage sur lequelappliquer la potion
      */
     public void boire(Personnage p) {
         if (0 == this.pos.distance(p.getPos())) {

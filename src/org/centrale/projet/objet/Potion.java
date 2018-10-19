@@ -12,15 +12,14 @@ package org.centrale.projet.objet;
 abstract class Potion extends Objet {
     
     /**
-     * Définie tous les attributs des potions
-     * ptRegen nombre de point régénérés par la potion 
+     * nombre de point régénérés par la potion 
      */
     protected int ptRegen;
     
     /**
      * méthode constructeur de la classe Potion prenant en compte les paramètres suivants 
-     * @param ptRegen
-     * @param pos
+     * @param ptRegen  nombre de point régénérés par la potion
+     * @param pos   position de la potion
      */
     public Potion(
         int ptRegen,

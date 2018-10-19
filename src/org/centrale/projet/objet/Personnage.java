@@ -17,20 +17,36 @@ abstract class Personnage extends Creature implements Combattant{
 
     //création des attributs de la classe abstraite Personnage 
     /**
-     * nom nom du personnage 
-     * ptMana points de mana du personnage (0) pour la plupart des classes
-     * pourcentageMag pourcentage de chance de réussir une attaque magique
-     * pourcentageResistMag pourcentage de chance de parer une attaque magique
-     * distAttMax distance d'attaque maximale
-     * jouable le personnage est un personnage joué par un joueur ou non
+     * nom du personnage
      */
     protected String nom;
+    /**
+     * points de mana du personnage (0) pour la plupart des classes
+     */
     protected int ptMana;
+    /**
+     * pourcentage de chance de réussir une attaque magique
+     */
     protected int pourcentageMag;
+    /**
+     * pourcentage de chance de résister à une attaque magique
+     */
     protected int pourcentageResistMag;
+    /**
+     * degats infligés avec une attaque magique
+     */
     protected int degMag;
+    /**
+     * distance d'attaque maximale
+     */
     protected int distAttMax;
+    /**
+     * le personnage est un personnage joué par un joueur ou non
+     */
     protected boolean jouable;
+    /**
+     * liste de bonus ou malus donné par la nourriture consommée
+     */
     protected List<Nourriture> buffs;
     
     //création des méthodes constructeurs
@@ -43,9 +59,9 @@ abstract class Personnage extends Creature implements Combattant{
      * @param pourcentageAtt
      * @param pourcentagePar
      * @param pourcentageMag pourcentage de chance de réussir une attaque magique
-     * @param pourcentageResistMag
+     * @param pourcentageResistMag pourcentage de chance de résister à une attaque magique
      * @param degAtt
-     * @param degMag
+     * @param degMag degats infligés avec une attaque magique
      * @param distAttMax distance d'attaque maximale
      * @param pos 
      * @param jouable le personnage est un personnage joué par un joueur ou non
@@ -258,13 +274,17 @@ abstract class Personnage extends Creature implements Combattant{
             }
         }
         System.out.println("Votre personnage est maintenant en position ["+this.getPos().getX()+", "+this.getPos().getY()+"].");
-
     }
+    
     public void combattre(){
         
     }
     
-    public void Manger(Nourriture n){
+    /**
+     * Méthode manger qui fait consommer la nourriture se trouvant sur une case par lepersonnage se trouvant sur la même case
+     * @param n nourriture mangée
+     */
+    public void manger(Nourriture n){
         if(this.getPos().distance(n.getPos())==0){
             this.buffs.add(n);
             n.pos=null;

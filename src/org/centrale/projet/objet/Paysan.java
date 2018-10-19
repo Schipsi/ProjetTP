@@ -30,7 +30,7 @@ public class Paysan extends Personnage {
      * @param distAttMax
      * @param pos 
      * @param jouable
-     * @param buffss
+     * @param buffs
      */
     public Paysan(
             String nom,

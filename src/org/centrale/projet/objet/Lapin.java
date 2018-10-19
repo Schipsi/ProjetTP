@@ -16,11 +16,12 @@ public class Lapin extends Monstre {
     //création des méthodes constructeurs
     /**
      * Méthode Constructeur de la classe Lapin prenant en compte les attributs suivants
-     * @param ptVie
-     * @param pourcentageAtt
-     * @param pourcentagePar
-     * @param degAtt
-     * @param pos 
+     * @param ptVie points de vie du lapin
+     * @param ptPar points de parade du lapin
+     * @param pourcentageAtt pourcentage de chance de réussir une attaque
+     * @param pourcentagePar pourcentage de chance de réussir une parade
+     * @param degAtt dégats d'attaque du lapin 
+     * @param pos position du lapin
      */
     public Lapin(
             int ptVie,

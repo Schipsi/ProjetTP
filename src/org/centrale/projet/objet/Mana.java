@@ -13,8 +13,8 @@ public class Mana extends Potion {
     
     /**
      * méthode constructeur de la classe Mana prenant en compte les paramètres suivants 
-     * @param ptRegen
-     * @param pos
+     * @param ptRegen points de mana régénrées par la potion
+     * @param pos position de la potion
      */
     public Mana(
         int ptRegen,

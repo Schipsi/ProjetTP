@@ -12,14 +12,13 @@ package org.centrale.projet.objet;
 abstract class Objet extends ElementDeJeu{
     
     /**
-     * Définie tous les attributs des objets
-     * pos position actuelle en 2 dimensions de l'objet 
+     * position actuelle en 2 dimensions de l'objet 
      */
     protected Point2D pos;
     
     /**
      * méthode constructeur de la classe Objet prenant en compte les paramètres suivants 
-     * @param pos 
+     * @param pos position de l'objet
      */
     public Objet(
         Point2D pos

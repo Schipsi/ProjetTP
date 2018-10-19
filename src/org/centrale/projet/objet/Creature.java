@@ -14,30 +14,39 @@ import java.util.Random;
 abstract class Creature extends ElementDeJeu implements Deplacable{
     
     /**
-     * Définie tous les attributs des creatures
-     * ptVie Points de Vie actuelles de la creature
-     * ptPar Points de Parades que possède la créature
-     * pourcentageAtt pourcentage de chance de réussir son attaque
-     * pourcentagePar pourcentage de chance de contrer une attaque réussi
-     * degAtt degat infligé à l'adversaire dans le cas d'une attaque réussi
-     * pos position actuelle en 2 dimensions de la creature 
+     * points de vies du personnage
      */
     protected int ptVie;
+    /**
+     * Points de Parades que possède la créature
+     */
     protected int ptPar;
+    /**
+     * pourcentage de chance de réussir son attaque
+     */
     protected int pourcentageAtt;
+    /**
+     * pourcentage de chance de contrer une attaque réussi
+     */
     protected int pourcentagePar;
+    /**
+     * degats infligé à l'adversaire dans le cas d'une attaque réussi
+     */
     protected int degAtt;
+    /**
+     * position actuelle en 2 dimensions de la creature 
+     */
     protected Point2D pos;
     
     
     /**
      * méthode constructeur de la classe Creature prenant en compte les paramètres suivants 
-     * @param ptVie
-     * @param ptPar
-     * @param pourcentageAtt
-     * @param pourcentagePar
-     * @param degAtt
-     * @param pos 
+     * @param ptVie Points de Vie actuelles de la creature
+     * @param ptPar Points de Parades que possède la créature
+     * @param pourcentageAtt pourcentage de chance de réussir son attaque
+     * @param pourcentagePar pourcentage de chance de contrer une attaque réussi
+     * @param degAtt degats infligé à l'adversaire dans le cas d'une attaque réussi
+     * @param pos position actuelle en 2 dimensions de la creature 
      */
     public Creature(
         int ptVie, 

@@ -13,13 +13,17 @@ import java.util.Random;
  */
 public class NuageToxique extends Objet implements Combattant, Deplacable{
    
-    
+    /**
+     * Méthode constructeur de NuageToxique
+     */
     public NuageToxique() {
         
     }
     
     
-    
+    /**
+     * Méthode déplacer du nuage, le déplaçant de manière aléatoire
+     */
     public void deplacer() {
         int x = 0;
         int y = 0;
@@ -33,6 +37,10 @@ public class NuageToxique extends Objet implements Combattant, Deplacable{
         this.setPos(new Point2D(x+this.getPos().getX(),y+this.getPos().getY()));
     }
     
+    /**
+     * inflige des dégats lorsque que le nuage se trouve sur la même case qu'une créature
+     * @param c creature attaquée
+     */
     public void combattre(Creature c){
         if(this.getPos().distance(c.getPos())==0){
             System.out.println("Un nuage toxique se trouve au dessus de la créature "

@@ -14,7 +14,9 @@ import java.util.Scanner;
 public class Joueur {
     
     protected Personnage perso;
-    
+    /**
+     * Méthode Constructeur de joueur permettant de créer un nouveau personnage jouable
+     */
     public Joueur(){
         Boolean chosen = false;
         Scanner sc = new Scanner(System.in);

@@ -14,12 +14,12 @@ abstract class Monstre extends Creature{
     //définition des constructeurs
     /**
      * Constructeur de la classe Monstre prenant en compte les attributs suivants
-     * @param ptVie
-     * @param ptPar
-     * @param pourcentageAtt
-     * @param pourcentagePar
-     * @param degAtt
-     * @param pos 
+     * @param ptVie points de vie du Monstre
+     * @param ptPar points de parade du Monstre
+     * @param pourcentageAtt pourcentage de chance de réussir une attaque
+     * @param pourcentagePar pourcentage de chance de réussir une parade
+     * @param degAtt dégats d'attaque du Monstre 
+     * @param pos position du Monstre
      */
     public Monstre(
         int ptVie, 
@@ -39,7 +39,7 @@ abstract class Monstre extends Creature{
     
     /**
      * Constructeur copie de la classe Monstre sortant une copie de l'entrée
-     * @param m Mosntre qu'on veut copier
+     * @param m Mosntre que l'on veut copier
      */
     public Monstre(Monstre m) {
         super(
@@ -68,7 +68,7 @@ abstract class Monstre extends Creature{
     
     /**
      *  Méthode affichant les attributs d'un Monstre en prenant en compte le nom du type de Monstre
-     * @param nomMonstre 
+     * @param nomMonstre nom du la classe du monstre.
      */
     public void affiche(String nomMonstre) {
         System.out.println(" Bonjour gentil voyageur , je suis un gentil " + nomMonstre + " et voici mes stats :");
