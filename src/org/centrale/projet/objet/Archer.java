@@ -94,7 +94,7 @@ public class Archer extends Personnage implements Combattant {
         Random lancerDeDes2 = new Random();
         this.degAtt= 5 + lancerDeDes1.nextInt(5) + lancerDeDes2.nextInt(5);
         this.distAttMax =3;
-        this.pourcentageAtt = 30 + lancerDeDes1.nextInt(15)+ lancerDeDes2.nextInt(15);
+        this.pourcentageAtt = 60 + lancerDeDes1.nextInt(15)+ lancerDeDes2.nextInt(15);
         this.pourcentagePar = 20 + lancerDeDes1.nextInt(15)+ lancerDeDes2.nextInt(15);
         this.pourcentageResistMag = 15 + lancerDeDes1.nextInt(20)+ lancerDeDes2.nextInt(20);
         this.ptPar = 5;

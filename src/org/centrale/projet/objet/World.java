@@ -34,9 +34,10 @@ public class World {
         int nbMage = 0;
         int nbPaysan = 0;
         int nbLapin = 0;
-        int nbLoup = seed.nextInt(2) + 100;
-        int nbPotionSoin = 20;
-        int nbPotionMana = 20;
+        int nbLoup = seed.nextInt(2) +10;
+        int nbPotionSoin = 10;
+        int nbPotionMana = 10;
+        int nbPommeDoree= 300;
         
         
         for (int i = 0; i < nbArcher; i++) {
@@ -62,6 +63,9 @@ public class World {
         }
         for (int i = 0; i < nbPotionMana; i++) {
             elementList.add(new Mana(5, new Point2D()));
+        }
+        for (int i = 0; i < nbPommeDoree; i++) {
+            elementList.add(new PommeDoree());
         }
         
         Joueur player1 = new Joueur();
