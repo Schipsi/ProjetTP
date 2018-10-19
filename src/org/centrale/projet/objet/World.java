@@ -37,7 +37,8 @@ public class World {
         int nbLoup = seed.nextInt(2) +10;
         int nbPotionSoin = 10;
         int nbPotionMana = 10;
-        int nbPommeDoree= 300;
+        int nbPommeDoree= 0;
+        int nbViandeDeZombie= 300;
         
         
         for (int i = 0; i < nbArcher; i++) {
@@ -66,6 +67,9 @@ public class World {
         }
         for (int i = 0; i < nbPommeDoree; i++) {
             elementList.add(new PommeDoree());
+        }
+        for (int i = 0; i < nbViandeDeZombie; i++) {
+            elementList.add(new ViandeDeZombie());
         }
         
         Joueur player1 = new Joueur();
@@ -153,9 +157,9 @@ public class World {
      * méthode affichant le monde avec p pour personnage , m pour monstre, o pour objet mais aussi avec q si il y a un objet et un personnage ou n si il y a un monstre et un objet
      */
     public void afficheWorld() {
-        for(int i = 0; i < tailleMax; i++) {
+        for(int i = tailleMax-1; i >-1; i--) {
             for(int j = 0; j < tailleMax; j++) {
-                Point2D pos = new Point2D(i, j);
+                Point2D pos = new Point2D(j, i);
                 if (null != getCrea(pos) && getCrea(pos) instanceof Personnage && !getObj(pos).isEmpty()) {
                     System.out.print("q");
                 } else if (null != getCrea(pos) && getCrea(pos) instanceof Creature && !getObj(pos).isEmpty()) {

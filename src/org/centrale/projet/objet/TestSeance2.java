@@ -49,12 +49,14 @@ public class TestSeance2 {
             System.out.println("Format de nombre invalide !");
         }
         */
-        
         ChargementPartie loading = new ChargementPartie("source.txt");
         World monde = loading.chargerPartie();
+        //World monde =new World();
         monde.afficheWorld();
-        monde.tourDeJeu();
         //joueur.perso.affiche();
         //joueur.perso.deplacer();
+        monde.jouer();
+        SauvegarderPartie Partie = new SauvegarderPartie("source.txt");
+        Partie.sauvegarderPartie(monde);
     }
 }

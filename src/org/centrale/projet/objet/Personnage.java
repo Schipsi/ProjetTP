@@ -185,6 +185,23 @@ abstract class Personnage extends Creature implements Combattant{
         this.distAttMax = distAttMax;
     }
 
+    public boolean isJouable() {
+        return jouable;
+    }
+
+    public void setJouable(boolean jouable) {
+        this.jouable = jouable;
+    }
+
+    public List<Nourriture> getBuffs() {
+        return buffs;
+    }
+
+    public void setBuffs(List<Nourriture> buffs) {
+        this.buffs = buffs;
+    }
+
+    
     /**
      * Méthode faisant l'affichage des attributs du personnage 
      */

@@ -13,7 +13,6 @@ abstract class Nourriture extends Objet{
     
     protected final int DUREEMAX =5;
     protected int duree;
-    protected Point2D pos;
     
     /**
      * Méthode constructeur de la classe Nourriture

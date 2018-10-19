@@ -48,7 +48,7 @@ public class ChargementPartie {
                 StringTokenizer status = new StringTokenizer(ligne, ",");
                 List<Nourriture> buffs = new ArrayList<>();
                 String temp = status.nextToken();
-                System.out.println(temp);
+                //System.out.println(temp);
                 if (status.hasMoreTokens()) {
                    String temp2 = status.nextToken();
                    StringTokenizer listBuffs = new StringTokenizer(temp2, " ");
@@ -180,7 +180,7 @@ public class ChargementPartie {
                         elementList.add(new PommeDoree( 
                                 Integer.parseInt(tokenizer.nextToken()),
                                 new Point2D(Integer.parseInt(tokenizer.nextToken()), Integer.parseInt(tokenizer.nextToken()))
-                        ));
+                        ));                    
                     } 
                 }
                 ligne = fichier.readLine();
