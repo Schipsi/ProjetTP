@@ -1,5 +1,6 @@
 # gitignore file for projet
 # all files but src file will be ignored to avoid compilation problems
 /*
+/*/
 !/.gitignore
-!/src
+!/src/
